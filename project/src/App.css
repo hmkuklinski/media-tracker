@@ -1,0 +1,89 @@
+*{
+    margin:0;
+    box-sizing: border-box;
+}
+/* for all podcasts- current, in queue, and completed*/
+.podcasts-container{
+    width: 100%;
+    position:absolute;
+}
+
+/* holds title and media-row*/
+.media-row-container{
+    display:flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    position:relative;
+    left: 5%;
+    width: 90%;
+    padding: 6px;
+    margin: 10px;
+}
+/* header for each row*/
+.media-row-header{
+    padding: 3px;
+}
+/* header font styling*/
+.media-row-header h3{
+    font-size: 35px;
+    margin:3px;
+}
+
+/* holds the image for the podcast*/
+.podcast-container{
+    margin: 0px 20px;
+    
+}
+.podcast-container:hover{
+    cursor:pointer;
+}
+
+/* sizing for the podcast images themselves*/
+.podcast-container img{
+    width: 200px;
+    height: 300px;
+}
+
+/* holds all the podcasts, is scrollable*/
+.media-row {
+    display:flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    width: 95%;
+    padding: 8px;
+    /* for the scroll itself: */
+    overflow-x: auto;
+    cursor:grab;
+    /* prevents from selecting any text on grab*/
+    user-select: none; 
+}
+
+/* Grab cursor when dragging */
+.media-row:active {
+  cursor: grabbing;
+}
+
+/* formatting to scroll menu container */
+.react-horizontal-scrolling-menu--scroll-container {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Webkid/MS Scrollbar formatting */
+.media-row::-webkit-scrollbar {
+  display: none;
+}
+.media-row {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar {
+  display: none;
+}
+.react-horizontal-scrolling-menu--scroll-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

@@ -1,0 +1,15 @@
+import MediaRow from "./MediaRow";
+import { podcastInfo } from "../myInfo";
+export default function Podcasts(){
+    //declare the genres to allow for an easy map of each section! :D
+    const myGenres = ["Comedy", "TV/Film", "Society"];
+    
+    return (
+        <div className="podcasts-container">
+            <MediaRow header="Currently Listening" isPodcast={true} dataArray={podcastInfo.filter(podcast=> podcast.status === "Listening")} />
+            {myGenres.map((genre)=>(
+                <MediaRow header={genre} isPodcast={true} dataArray={podcastInfo.filter(podcast=> podcast.genres.includes(genre))} />
+            ))}
+        </div>
+    );
+}
