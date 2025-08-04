@@ -1,11 +1,22 @@
-import TVShow from './TvShow';
-import Podcast from './Podcast';
-import { useRef, useState } from 'react'; //for click scroll
+import TvShow from './TV/TvShow';
+import Podcast from './Podcasts/Podcast';
+import { useRef, useState, useEffect } from 'react'; //for click scroll
 import { ScrollMenu} from 'react-horizontal-scrolling-menu'; //for touchscreen scroll
 
 export default function MediaRow({isPodcast, header, dataArray}){
     //get reference:
     const myRef = useRef(null);
+    const [isMobile, setIsMobile]= useState(false);
+
+     //check if the user is on mobile:
+    useEffect(() => {
+        function handleResize() {
+        setIsMobile(window.innerWidth < 768);
+        }
+        handleResize(); // check on mount
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
     
     //track whether user is dragging or not:
     const [isDragging, setIsDragging]= useState(false);
@@ -48,10 +59,20 @@ export default function MediaRow({isPodcast, header, dataArray}){
 
     //since reusing for podcast and show, check if its a podcast or show and use component as expected
     let content = dataArray.map((item)=>(
-        isPodcast? (<Podcast key={item.id} {...item} />):  (<TVShow key={item.id} {...item} />)
+        isPodcast? (<Podcast key={item.id} {...item} />):  (<TvShow key={item.id} {...item} />)
     ))
 
-    return (
+    let contentDiv = isMobile? 
+        (
+            <div className="media-row-container-mobile">
+                <div className="media-row-header-mobile">
+                    <h3>{header}</h3>
+                </div>
+                <div className="media-row-mobile">
+                    {content}
+                </div>
+            </div>
+        ): (
         <div className="media-row-container">
             <div className="media-row-header">
                 <h3>{header}</h3>
@@ -68,8 +89,9 @@ export default function MediaRow({isPodcast, header, dataArray}){
                 <ScrollMenu>
                     {content}
                 </ScrollMenu>
-                
             </div>
         </div>
-    );
+        );
+
+    return contentDiv;
 }

@@ -1,63 +1,210 @@
 *{
-    margin:0;
-    box-sizing: border-box;
+  margin:0;
+  box-sizing: border-box;
 }
-/* for all podcasts- current, in queue, and completed*/
-.podcasts-container{
-    width: 100%;
-    position:absolute;
+:root{
+  --navbar: whitesmoke;
+  --nav-active: rgb(216, 132, 160);
+  --nav-hover:pink;
+  --hamburger: rgb(196, 126, 218);
+  --active-page: rgb(196, 126, 218);
 }
 
+
+/*----------------------------Media Display Mobile Formatting----------------------------*/
+.media-row-container-mobile{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position:relative;
+  left:2%;
+  width: 95%;
+}
+.media-row-mobile{
+  width: 100%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.media-row-container-mobile .media-row-header-mobile{
+  text-align:center;
+  width: 100%;
+  font-size: 30px;
+  margin:60px 0px 15px 0px;
+}
+.media-row-mobile .podcast-container, .media-row-mobile .tv-container{
+  margin: 15px 0px;
+}
+.media-row-mobile .podcast-container img{
+  width: 100%;
+}
+.media-row-mobile .tv-container{
+  width: 100%;
+  height: 270px;
+  margin: 8px 4px;
+}
+.media-row-mobile .tv-container img{
+  width: 100%;
+  height: 265px;
+}
+/*--------------- MOBILE NAVBAR FORMATTING ------------------------------*/
+/* FOR THE NAVBAR!! */
+.nav-mobile{
+  margin-top: 10px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  flex-direction:row;
+  /* background-image:url('https://www.shutterstock.com/image-vector/retro-vaporwave-desktop-wallpaper-template-600nw-2140596103.jpg'); */
+  background-image:url('https://www.shutterstock.com/shutterstock/videos/3748611245/thumb/1.jpg?ip=x480');
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  min-height: 260px;
+}
+.nav-options{
+  display:flex;
+  align-items:center;
+  justify-content:center; 
+  width: 100%;
+  position: absolute;
+  top: 270px;
+  left: 0px;
+  z-index: 100;
+  padding: 6px;
+  background-color: var(--navbar);
+  height:auto;
+}
+.nav-options ul{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  list-style:none;
+}
+.nav-options li{
+  cursor:pointer;
+  padding: 10px;
+  gap: 4rem;
+  text-align:center;
+  width: 50%;
+}
+.nav-options li a{
+  color: #333;
+  text-decoration:none;
+  font-size: 20px;
+}
+.nav-options li:hover{
+  transition: 0.4s ease-in;
+}
+.nav-options li a:hover{
+  color: var(--nav-active);
+}
+.nav-options li .active{
+  color: var(--nav-hover);
+}
+
+
+.nav-button{
+  width: 30%;
+  position: absolute;
+  top: 34px;
+  right: 10px;
+  z-index: 100;
+  height: 100px;
+}
+.hamburger{
+  width: 100%;
+  background:none;
+  border:none;
+  color:  var(--hamburger);
+  font-size: 38px;
+}
+.hamburger:hover{
+  transition: 0.6s ease-in;
+  background-color: transparent;
+  color: var(--nav-hover);
+}
+.active-page {
+  display:flex;
+  align-items: center;
+  justify-content:center;
+  position:relative;
+  top: 0px;
+  width: 100%;
+  color:whitesmoke;
+  text-align: center;
+  padding: 8px 0;
+  font-size: 24px;
+  height: 50px;
+  background-color: var(--active-page);
+}
+
+
+/*----------------------------Podcast Formatting----------------------------*/
+/* for all podcasts- current, in queue, and completed*/
+.podcasts-container{
+  width: 100%;
+  position:absolute;
+}
 /* holds title and media-row*/
 .media-row-container{
-    display:flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-    position:relative;
-    left: 5%;
-    width: 90%;
-    padding: 6px;
-    margin: 10px;
+  display:flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  position:relative;
+  left: 5%;
+  width: 95%;
+  padding: 6px;
+  margin: 10px;
 }
 /* header for each row*/
 .media-row-header{
-    padding: 3px;
+  padding: 3px;
 }
 /* header font styling*/
 .media-row-header h3{
-    font-size: 35px;
-    margin:3px;
+  font-size: 35px;
+  margin:3px;
 }
 
 /* holds the image for the podcast*/
-.podcast-container{
-    margin: 0px 20px;
-    
+.podcast-container, .tv-container{
+  margin: 0px 20px;
 }
-.podcast-container:hover{
-    cursor:pointer;
+
+/*will be to allow for click on podcast and tv for additional info*/
+.podcast-container:hover, .tv-container:hover{
+  cursor:pointer;
 }
 
 /* sizing for the podcast images themselves*/
 .podcast-container img{
-    width: 200px;
-    height: 300px;
+  width: 200px;
+  height: 300px;
+}
+.tv-container img{
+  width: 300px;
+  height: 200px;
 }
 
 /* holds all the podcasts, is scrollable*/
 .media-row {
-    display:flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-    width: 95%;
-    padding: 8px;
-    /* for the scroll itself: */
-    overflow-x: auto;
-    cursor:grab;
-    /* prevents from selecting any text on grab*/
-    user-select: none; 
+  display:flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  width: 95%;
+  padding: 8px;
+  /* for the scroll itself: */
+  overflow-x: auto;
+  cursor:grab;
+  /* prevents from selecting any text on grab*/
+  user-select: none; 
 }
 
 /* Grab cursor when dragging */
@@ -67,11 +214,11 @@
 
 /* formatting to scroll menu container */
 .react-horizontal-scrolling-menu--scroll-container {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
 }
 
-/* Webkid/MS Scrollbar formatting */
+/*----------------------------Scrollbar Formatting----------------------------*/
 .media-row::-webkit-scrollbar {
   display: none;
 }
@@ -87,3 +234,118 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/*----------------------------NavBar Formatting----------------------------*/
+
+.nav{
+  display: flex;
+  justify-content:space-evenly;
+  align-items:center;
+  gap: 1rem;
+  padding: 0 1rem;
+  width: 100%;
+}
+/* styling for unordered list element */
+.nav ul{
+  padding: 5px;
+  margin:0;
+  list-style:none;
+  display:flex;
+  gap: 2rem;
+}
+/* styling for the active page on navbar*/
+.nav .active{
+  color: var(--nav-active);
+}
+/* styling for hover on a navbar link*/
+.nav li:hover{
+  text-decoration: underline 3px solid var(--nav-hover);
+}
+
+/* styling for navbar links*/
+.nav a{
+  color:inherit;
+  text-decoration: none;
+  height: 100%;
+  display:flex;
+  align-items: center;
+  padding: .25rem;
+}
+
+/* styling for navbar logo*/
+.nav img{
+  width: 100px;
+  height: 70px;
+}
+/*----------------------------NavBar Dropdown Formatting----------------------------*/
+/* Container for dropdown */
+.nav .dropdown {
+  position: relative;
+}
+
+.nav .dropdown > span {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0.25rem;
+}
+
+/* Dropdown menu hidden by default */
+.nav .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--main-color);
+  border: 1px solid var(--second-color);
+  padding: 0.5rem 0;
+  min-width: 150px;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 1000;
+  background-color: var(--navbar);
+}
+/* Each link inside dropdown */
+.nav .dropdown-menu li {
+  padding: 0 1rem;
+  white-space: nowrap;
+}
+
+/* Show dropdown on hover */
+.nav .dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+.nav #extras .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+
+/*----------------------------NavBar Category Submenu Formatting----------------------------*/
+/* set to relative to allow for proper positioning*/
+.dropdown-submenu {
+  position: relative;
+}
+
+/*position the ul for the submenu*/
+.dropdown-submenu-menu {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background:  var(--navbar);
+  min-width: 150px; 
+}
+
+/*hide the menu options unless hovered*/
+li.dropdown-submenu > ul.dropdown-submenu-menu {
+  display: none;
+}
+
+li.dropdown-submenu:hover > ul.dropdown-submenu-menu {
+  display: block;
+}
+
