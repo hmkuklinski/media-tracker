@@ -5,7 +5,7 @@ export default function CurrentTv(){
     return (
         <Layout>
             <div className="podcasts-container">
-                <MediaRow header="Currently Watching" isPodcast={false} dataArray={tvShowInfo.filter(show=> show.status === "Watching" || show.status === "Streaming")} />
+                <MediaRow header="Currently Watching" dataType="tv" dataArray={tvShowInfo.filter(show=> show.status === "Watching" || show.status === "Streaming")} />
             </div>
         </Layout>
     );

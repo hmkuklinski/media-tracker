@@ -8,9 +8,9 @@ export default function Podcasts(){
     return (
         <Layout>
             <div className="podcasts-container">
-                <MediaRow header="Currently Listening" isPodcast={true} dataArray={podcastInfo.filter(podcast=> podcast.status === "Listening")} />
+                <MediaRow header="Currently Listening" dataType="podcast" dataArray={podcastInfo.filter(podcast=> podcast.status === "Listening")} />
                 {myGenres.map((genre)=>(
-                    <MediaRow header={genre} isPodcast={true} dataArray={podcastInfo.filter(podcast=> podcast.genres.includes(genre))} />
+                    <MediaRow header={genre} dataType="podcast" dataArray={podcastInfo.filter(podcast=> podcast.genres.includes(genre))} />
                 ))}
             </div>
         </Layout>

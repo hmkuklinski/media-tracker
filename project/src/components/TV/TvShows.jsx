@@ -7,9 +7,9 @@ export default function TvShows(){
     return (
         <Layout>
             <div className="podcasts-container">
-                <MediaRow header="Currently Watching" isPodcast={false} dataArray={tvShowInfo.filter(show=> show.status === "Watching" || show.status === "Streaming")} />
+                <MediaRow header="Currently Watching" dataType="tv" dataArray={tvShowInfo.filter(show=> show.status === "Watching" || show.status === "Streaming")} />
                 {myGenres.map((genre)=>(
-                    <MediaRow header={genreTitles[genre]} isPodcast={false} dataArray={tvShowInfo.filter(show=> show.genres.includes(genre))} />
+                    <MediaRow header={genreTitles[genre]} dataType="tv" dataArray={tvShowInfo.filter(show=> show.genres.includes(genre))} />
                 ))}
             </div>
         </Layout>

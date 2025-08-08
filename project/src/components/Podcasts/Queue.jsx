@@ -5,7 +5,7 @@ export default function Queue(){
     return (
         <Layout>
             <div className="podcasts-container">
-                <MediaRow header="Podcast Queue" isPodcast={true} dataArray={podcastInfo.filter(podcast=> podcast.status === "To Listen")} />
+                <MediaRow header="Podcast Queue" dataType="podcast" dataArray={podcastInfo.filter(podcast=> podcast.status === "To Listen")} />
             </div>
         </Layout>
     );

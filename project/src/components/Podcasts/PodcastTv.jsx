@@ -5,7 +5,7 @@ export default function PodcastTv(){
     return (
         <Layout>
             <div className="podcasts-container">
-                <MediaRow header="TV/Film" isPodcast={true} dataArray={podcastInfo.filter(podcast=> podcast.genres.includes("TV/Film"))} />
+                <MediaRow header="TV/Film" dataType="podcast" dataArray={podcastInfo.filter(podcast=> podcast.genres.includes("TV/Film"))} />
             </div>
         </Layout>
     );

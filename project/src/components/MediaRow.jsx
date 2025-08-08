@@ -2,8 +2,9 @@ import TvShow from './TV/TvShow';
 import Podcast from './Podcasts/Podcast';
 import { useRef, useState, useEffect } from 'react'; //for click scroll
 import { ScrollMenu} from 'react-horizontal-scrolling-menu'; //for touchscreen scroll
+import AnimeMovie from './AM/AnimeMovie';
 
-export default function MediaRow({isPodcast, header, dataArray}){
+export default function MediaRow({dataType, header, dataArray}){
     //get reference:
     const myRef = useRef(null);
     const [isMobile, setIsMobile]= useState(false);
@@ -58,9 +59,12 @@ export default function MediaRow({isPodcast, header, dataArray}){
     }
 
     //since reusing for podcast and show, check if its a podcast or show and use component as expected
-    let content = dataArray.map((item)=>(
-        isPodcast? (<Podcast key={item.id} {...item} />):  (<TvShow key={item.id} {...item} />)
-    ))
+    let content = dataArray.map(item=>
+        dataType === "podcast" ? <Podcast key={item.id} {...item} /> :
+        dataType === "tv" ? <TvShow key={item.id} {...item} /> :
+        (dataType === "movie" || dataType==="anime") ? <AnimeMovie key={item.id} {...item} /> :
+        null
+    );
 
     let contentDiv = isMobile? 
         (

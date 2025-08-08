@@ -5,7 +5,7 @@ export default function Completed(){
     return (
         <Layout>
             <div className="podcasts-container">
-                <MediaRow header="Watched" isPodcast={false} dataArray={tvShowInfo.filter(show=> show.status === "Watched")} />
+                <MediaRow header="Watched" dataType="tv" dataArray={tvShowInfo.filter(show=> show.status === "Watched")} />
             </div>
         </Layout>
     );

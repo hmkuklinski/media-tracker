@@ -5,7 +5,7 @@ export default function Watchlist(){
     return (
         <Layout>
             <div className="podcasts-container">
-                <MediaRow header="My Watchlist" isPodcast={false} dataArray={tvShowInfo.filter(show=> show.status === "To Watch")} />
+                <MediaRow header="My Watchlist" dataType="tv" dataArray={tvShowInfo.filter(show=> show.status === "To Watch")} />
             </div>
         </Layout>
     );

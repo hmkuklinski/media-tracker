@@ -5,7 +5,7 @@ export default function PodcastComplete(){
     return (
         <Layout>
             <div className="podcasts-container">
-                <MediaRow header="Completed Podcasts" isPodcast={true} dataArray={podcastInfo.filter(podcast=> podcast.status === "Completed")} />
+                <MediaRow header="Completed Podcasts" dataType="podcast" dataArray={podcastInfo.filter(podcast=> podcast.status === "Completed")} />
             </div>
         </Layout>
     );

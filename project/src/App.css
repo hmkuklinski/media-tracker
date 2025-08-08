@@ -1,6 +1,7 @@
 *{
   margin:0;
   box-sizing: border-box;
+  font-family:Arial, Helvetica, sans-serif;
 }
 :root{
   --navbar: whitesmoke;
@@ -349,3 +350,68 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu {
   display: block;
 }
 
+/*----------------------------TV Landing Formatting----------------------------*/
+/* entire featured tv show container- holds the background image*/
+.tv-landing-container{
+  height: 500px;
+  display:flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  background-size: cover;
+  position:relative;
+  width: 88%;
+  left: 8%;
+  margin: 15px 0px;
+}
+/* holds the featured title and the episode information*/
+.tv-content-main{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position:relative;
+  width: 33%;
+  left: 20px;
+  top: 0px;
+  /* background-color: rgba(245, 245, 245, 0.39); */
+  color:whitesmoke;
+  border-radius: 20px;
+  padding: 6px;
+}
+/* holds tv's information- title, rating, desc, streaming, status*/
+.tv-content{
+  display:flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px;
+  background-color: #33333388;
+}
+.tv-title{
+  width:100%;
+}
+.tv-desc p{
+  font-size: 16px;
+  word-spacing: 0.1rem;
+  margin: 10px 0px;
+}
+.selection-menu{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap:wrap;
+  flex-wrap:wrap;
+}
+.selection-option {
+  font-size: 24px;
+  cursor:pointer;
+  margin: 0px 5px;
+}
+
+@media (max-width: 768px){
+  .tv-content-main{
+    width: 95%;
+  }
+}

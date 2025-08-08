@@ -6,7 +6,7 @@ export default function Medical(){
     return (
         <Layout>
             <div className="podcasts-container">
-                <MediaRow header={genreTitles[genre]} isPodcast={false} dataArray={tvShowInfo.filter(show=> show.genres.includes(genre))} />
+                <MediaRow header={genreTitles[genre]} dataType="tv" dataArray={tvShowInfo.filter(show=> show.genres.includes(genre))} />
             </div>
         </Layout>
     );
