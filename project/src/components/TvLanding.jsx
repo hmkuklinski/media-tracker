@@ -1,6 +1,6 @@
 export default function TvLanding(props){
     return (
-        <div className="tv-landing-container" style={{backgroundImage: `url(${props.imgsrc})`, backgroundRepeat:"no-repeat"}}>
+        <div className="tv-landing-container" style={{backgroundImage: `url(${props.imgsrc})`, backgroundRepeat:"no-repeat"}} id={props.id}>
             <div className="tv-content-main">
                 <div className="tv-content">
                     <div className="tv-title">

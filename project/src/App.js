@@ -6,22 +6,10 @@ import {Routes, Route} from "react-router-dom";
 import PodcastTv from './components/Podcasts/PodcastTv';
 import PodcastComedy from './components/Podcasts/PodcastComedy';
 import PodcastCurrent from './components/Podcasts/PodcastCurrent';
-import Comedy from './components/TV/Comedy';
-import Crime from './components/TV/Crime';
-import Criminal from './components/TV/Criminal';
-import Thriller from './components/TV/Thriller';
-import Law from './components/TV/Law';
-import Medical from './components/TV/Medical';
-import Fire from './components/TV/Fire';
-import Supernatural from './components/TV/Supernatural';
-import SuperHero from './components/TV/SuperHero';
-import Action from './components/TV/Action';
-import Medieval from './components/TV/Medieval';
-import CurrentTv from './components/TV/CurrentTv';
-import Completed from './components/TV/Completed';
-import Watchlist from './components/TV/Watchlist';
 import Queue from './components/Podcasts/Queue';
 import PodcastComplete from './components/Podcasts/PodcastComplete';
+import Category from './components/TV/Category';
+import { tvShowInfo } from './myInfo';
 
 
 function App() {
@@ -38,21 +26,23 @@ function App() {
         <Route path="/podcast/comedy" element={<PodcastComedy />} />
 
         <Route path="/tv" element={<TvShows />} />
-        <Route path="/tv/complete" element={<Completed />} />
-        <Route path="/tv/watchlist" element={<Watchlist />} />
-        <Route path="/tv/current" element={<CurrentTv />} />
+        <Route path="/tv/complete" element={<Category list={tvShowInfo} filterProp="status" filterText="Watched" key="Completed" />} />
+        <Route path="/tv/watchlist" element={<Category list={tvShowInfo} filterProp="status" filterText="To Watch" key="Watchlist" />} />
+        <Route path="/tv/current" element={<Category list={tvShowInfo} filterProp="status" filterText="Streaming"key="Current" />} />
         
-        <Route path="/tv/comedy" element={<Comedy />} />
-        <Route path="/tv/crime" element={<Crime />} />
-        <Route path="/tv/criminal" element={<Criminal />} />
-        <Route path="/tv/fire" element={<Fire />} />
-        <Route path="/tv/law" element={<Law />} />
-        <Route path="/tv/medical" element={<Medical />} />
-        <Route path="/tv/medieval" element={<Medieval />} />
-        <Route path="/tv/action" element={<Action />} />
-        <Route path="/tv/supernatural" element={<Supernatural />} />
-        <Route path="/tv/superhero" element={<SuperHero />} />
-        <Route path="/tv/thriller" element={<Thriller />} />
+        <Route path="/tv/comedy" element={<Category list={tvShowInfo} filterProp="genres" filterText="Comedy" key="Comedy" />} />
+        <Route path="/tv/crime" element={<Category list={tvShowInfo} filterProp="genres" filterText="Crime" key="Crime"/>} />
+        <Route path="/tv/criminal" element={<Category list={tvShowInfo} filterProp="genres" filterText="Criminal" key="Criminal"/>} />
+        <Route path="/tv/fire" element={<Category list={tvShowInfo} filterProp="genres" filterText="Fire" key="Fire"/>} />
+        <Route path="/tv/law" element={<Category list={tvShowInfo} filterProp="genres" filterText="Law" key="Law"/>} />
+        <Route path="/tv/medical" element={<Category list={tvShowInfo} filterProp="genres" filterText="Medical" key="Medical"/>} />
+        <Route path="/tv/medieval" element={<Category list={tvShowInfo} filterProp="genres" filterText="Medieval" key="Medieval" />} />
+        <Route path="/tv/action" element={<Category list={tvShowInfo} filterProp="genres" filterText="Action" key="Action"/>} />
+        <Route path="/tv/supernatural" element={<Category list={tvShowInfo} filterProp="genres" filterText="Supernatural" key="Supernatural"/>} />
+        <Route path="/tv/superhero" element={<Category list={tvShowInfo} filterProp="genres" filterText="Superhero" key="Superhero"/>} />
+        <Route path="/tv/thriller" element={<Category list={tvShowInfo} filterProp="genres" filterText="Thriller" key="Thriller"/>} />
+        <Route path="/tv/political" element={<Category list={tvShowInfo} filterProp="genres" filterText="Political" key="Political"/>} />
+        
       </Routes>
     </div>
   );

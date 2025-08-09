@@ -363,6 +363,9 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu {
   left: 8%;
   margin: 15px 0px;
 }
+#international{
+  margin-top: 65px;
+}
 /* holds the featured title and the episode information*/
 .tv-content-main{
   display:flex;
