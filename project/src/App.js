@@ -9,7 +9,8 @@ import PodcastCurrent from './components/Podcasts/PodcastCurrent';
 import Queue from './components/Podcasts/Queue';
 import PodcastComplete from './components/Podcasts/PodcastComplete';
 import Category from './components/TV/Category';
-import { tvShowInfo } from './myInfo';
+import { chineseDramaInfo, documentaryInfo, japanDramaInfo, kdramaInfo, thaiDramaInfo, tvShowInfo } from './myInfo';
+import International from './components/TV/International';
 
 
 function App() {
@@ -42,7 +43,12 @@ function App() {
         <Route path="/tv/superhero" element={<Category list={tvShowInfo} filterProp="genres" filterText="Superhero" key="Superhero"/>} />
         <Route path="/tv/thriller" element={<Category list={tvShowInfo} filterProp="genres" filterText="Thriller" key="Thriller"/>} />
         <Route path="/tv/political" element={<Category list={tvShowInfo} filterProp="genres" filterText="Political" key="Political"/>} />
-        
+        <Route path="/tv/documentary" element={<Category list={documentaryInfo} filterProp="genres" filterText="Documentary" key="Documentary" dataType="documentary"/>} />
+        <Route path="/tv/international" element={<International />} />
+        <Route path="/tv/japanese" element={<Category list={japanDramaInfo} filterProp="genres" filterText="Japanese" key="Japanese"/>} />
+        <Route path="/tv/korean" element={<Category list={kdramaInfo} filterProp="genres" filterText="Korean" key="Korean"/>} />
+        <Route path="/tv/mandarin" element={<Category list={chineseDramaInfo} filterProp="genres" filterText="Mandarin" key="Mandarin"/>} />
+        <Route path="/tv/thai" element={<Category list={thaiDramaInfo} filterProp="genres" filterText="Thai" key="Thai"/>} />
       </Routes>
     </div>
   );

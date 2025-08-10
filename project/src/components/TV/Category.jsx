@@ -3,7 +3,7 @@ import { useState, useEffect} from "react";
 import TvLanding from "../TvLanding";
 import MediaRow from '../MediaRow';
 
-export default function Category({list, filterProp, filterText}){
+export default function Category({list, filterProp, filterText, dataType=null}){
     // generate the filtered list based on what is passed: for individual categories, will filter the genre attribute. for watch status, will filter based on status attribute
     const filtered = list.filter(show => show[filterProp].includes(filterText));
     const filteredRanking = filtered.sort((a, b) => b.rating.length - a.rating.length);
@@ -25,9 +25,16 @@ export default function Category({list, filterProp, filterText}){
         
     }, [filtered, currEp]);
 
+    //see if there's a passed dataType value (anime, movie, documentary, etc...) --> if not, set to tv
+    const dataValue = dataType? dataType: "tv";
+    //switch the pic if the dataValue anything besides tv
+    const switchPic = dataValue==="tv"? false: true;
+
+
+
     return (
         <Layout>
-            <TvLanding {...currEp} />
+            <TvLanding {...currEp} switchPic={switchPic} />
             <div className="selection-menu">
                 {filtered10.map((ep)=>(
                     <div className={`selection-option ${ep.id === currEp.id? "selected":""}`} onClick={()=>setCurrEp(ep)}>
@@ -35,10 +42,10 @@ export default function Category({list, filterProp, filterText}){
                     </div>
                 ))}
             </div>
-           {netflixContent.length>0  &&  <MediaRow header="Now Streaming on Netflix" dataType="tv" dataArray={netflixContent} />}
-           {huluContent.length >0 &&  <MediaRow header="Now Streaming on Hulu" dataType="tv" dataArray={huluContent} />}
-           {paramountContent.length > 0 && <MediaRow header="Now Streaming on Paramount+" dataType="tv" dataArray={paramountContent} />}
-           {primeContent.length >0 &&  <MediaRow header="Now Streaming on Prime Video" dataType="tv" dataArray={primeContent} /> }
+           {netflixContent.length>0  &&  <MediaRow header="Now Streaming on Netflix" dataType={dataValue} dataArray={netflixContent} />}
+           {huluContent.length >0 &&  <MediaRow header="Now Streaming on Hulu" dataType={dataValue} dataArray={huluContent} />}
+           {paramountContent.length > 0 && <MediaRow header="Now Streaming on Paramount+" dataType={dataValue} dataArray={paramountContent} />}
+           {primeContent.length >0 &&  <MediaRow header="Now Streaming on Prime Video" dataType={dataValue} dataArray={primeContent} /> }
         </Layout>
     );
 }

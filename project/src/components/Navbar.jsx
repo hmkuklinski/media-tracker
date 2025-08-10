@@ -78,11 +78,18 @@ export default function NavBar() {
               <li><NavLink to="/tv/comedy" className={({ isActive }) => isActive ? "active" : ""}>Comedy</NavLink></li>
               <li><NavLink to="/tv/crime" className={({ isActive }) => isActive ? "active" : ""}>Police</NavLink></li>
               <li><NavLink to="/tv/criminal" className={({ isActive }) => isActive ? "active" : ""}>Criminal/Vigilantes</NavLink></li>
+              <li><NavLink to="/tv/documentary" className={({ isActive }) => isActive ? "active" : ""}>Documentary</NavLink></li>
               <li><NavLink to="/tv/fire" className={({ isActive }) => isActive ? "active" : ""}>Fire</NavLink></li>
+               <li><NavLink to="/tv/international" className={({ isActive }) => isActive ? "active" : ""}>International</NavLink></li>
+              {/* <li><NavLink to="/tv/japanese" className={({ isActive }) => isActive ? "active" : ""}>Japanese</NavLink></li> */}
+              {/* <li><NavLink to="/tv/korean" className={({ isActive }) => isActive ? "active" : ""}>Korean</NavLink></li> */}
               <li><NavLink to="/tv/law" className={({ isActive }) => isActive ? "active" : ""}>Law/Political</NavLink></li>
+              {/* <li><NavLink to="/tv/mandarin" className={({ isActive }) => isActive ? "active" : ""}>Mandarin</NavLink></li> */}
               <li><NavLink to="/tv/medical" className={({ isActive }) => isActive ? "active" : ""}>Medical</NavLink></li>
+              <li><NavLink to="/tv/medieval" className={({ isActive }) => isActive ? "active" : ""}>Medieval</NavLink></li>
               <li><NavLink to="/tv/supernatural" className={({ isActive }) => isActive ? "active" : ""}>SciFi</NavLink></li>
               <li><NavLink to="/tv/superhero" className={({ isActive }) => isActive ? "active" : ""}>Superhero</NavLink></li>
+              {/* <li><NavLink to="/tv/thai" className={({ isActive }) => isActive ? "active" : ""}>Thai</NavLink></li> */}
               <li><NavLink to="/tv/thriller" className={({ isActive }) => isActive ? "active" : ""}>Thriller</NavLink></li>
             </ul>
           </li>

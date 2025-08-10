@@ -62,7 +62,7 @@ export default function MediaRow({dataType, header, dataArray}){
     let content = dataArray.map(item=>
         dataType === "podcast" ? <Podcast key={item.id} {...item} /> :
         dataType === "tv" ? <TvShow key={item.id} {...item} /> :
-        (dataType === "movie" || dataType==="anime") ? <AnimeMovie key={item.id} {...item} /> :
+        (dataType === "movie" || dataType==="anime"|| dataType==="documentary") ? <AnimeMovie key={item.id} {...item} /> :
         null
     );
 

@@ -363,9 +363,10 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu {
   left: 8%;
   margin: 15px 0px;
 }
-#international{
+#international, #docs{
   margin-top: 65px;
 }
+
 /* holds the featured title and the episode information*/
 .tv-content-main{
   display:flex;
@@ -411,6 +412,16 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu {
   font-size: 24px;
   cursor:pointer;
   margin: 0px 5px;
+}
+
+.anime-movie-container{
+  width: 150px;
+  height: 100%;
+  margin: 0px 14px;
+}
+.anime-movie-container img{
+  width:100%;
+  height:100%;
 }
 
 @media (max-width: 768px){
