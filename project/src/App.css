@@ -4,11 +4,33 @@
   font-family:Arial, Helvetica, sans-serif;
 }
 :root{
+  /* variables for the navbar*/
   --navbar: whitesmoke;
   --nav-active: rgb(216, 132, 160);
   --nav-hover:pink;
   --hamburger: rgb(196, 126, 218);
   --active-page: rgb(196, 126, 218);
+  
+  --background-color: whitesmoke;/* colors for the entire page*/
+  --header-text:black;/* colors for the category titles*/
+  --landing-text: whitesmoke;/* color for the TvLanding text*/
+  
+  /*colors for the popup box*/
+  --popup-color: whitesmoke;
+  --popup-text: black;
+  --popup-x: red;
+}
+
+body{
+  background-color: var(--background-color);
+}
+/* create giant square size of screen to create a blur effect!*/
+.backdrop-blur {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  backdrop-filter: blur(5px);
+  background-color: rgba(0,0,0,0.4);
+  z-index: 900; 
 }
 
 
@@ -171,6 +193,7 @@
 .media-row-header h3{
   font-size: 35px;
   margin:3px;
+  color: var(--header-text);
 }
 
 /* holds the image for the podcast*/
@@ -363,9 +386,10 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu {
   left: 8%;
   margin: 15px 0px;
 }
-#international, #docs{
+#international, #docs, #jdramas, #anime{
   margin-top: 65px;
 }
+
 
 /* holds the featured title and the episode information*/
 .tv-content-main{
@@ -378,7 +402,7 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu {
   left: 20px;
   top: 0px;
   /* background-color: rgba(245, 245, 245, 0.39); */
-  color:whitesmoke;
+  color:var(--landing-text);
   border-radius: 20px;
   padding: 6px;
 }
@@ -424,8 +448,75 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu {
   height:100%;
 }
 
+
+/* formatting for the pop up on click for Podcast, TVShow, AnimeMovie*/
+.clicked-box{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 60%;
+  height: auto;
+  background-color: var(--popup-color);
+  position:fixed;
+  z-index: 1000;
+  left: 20%;
+  top: 4%;
+  padding: 8px;
+}
+.clicked-content{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 7px;
+  text-align: center;
+  color: var(--popup-text);
+}
+.clicked-img{
+  width: 90%;
+  height: 350px;
+  margin-top: 10px;
+}
+.clicked-img img{
+  width:100%;
+  height: 340px;
+}
+.clicked-title{
+  margin-top: 15px;
+}
+
+.clicked-box-exit{
+  position:absolute;
+  right: 4%;
+  top: 3%;
+  cursor:pointer;
+  color:var(--popup-x);
+  font-size: 26px;
+}
+.ep-desc{
+  padding: 10px;
+  width: 95%;
+}
+.ep-desc p {
+  font-size: 16px;
+}
+
 @media (max-width: 768px){
   .tv-content-main{
     width: 95%;
+  }
+  .clicked-box{
+    width:90%;
+    left: 4%;
+    top: 2%;
+  }
+  .clicked-img{
+    height: 250px;
+  }
+  .clicked-img img{
+    width:100%;
+    height: 100%;
   }
 }

@@ -3,11 +3,17 @@ import Podcast from './Podcasts/Podcast';
 import { useRef, useState, useEffect } from 'react'; //for click scroll
 import { ScrollMenu} from 'react-horizontal-scrolling-menu'; //for touchscreen scroll
 import AnimeMovie from './AM/AnimeMovie';
+import ClickedBox from './ClickedBox';
 
 export default function MediaRow({dataType, header, dataArray}){
     //get reference:
     const myRef = useRef(null);
     const [isMobile, setIsMobile]= useState(false);
+
+    //the pop up box when clicking on an item
+    const [clickedItem, setClickedItem] = useState(null);
+    const [seeBox, setSeeBox] = useState(false);
+
 
      //check if the user is on mobile:
     useEffect(() => {
@@ -18,6 +24,9 @@ export default function MediaRow({dataType, header, dataArray}){
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
+
+
+
     
     //track whether user is dragging or not:
     const [isDragging, setIsDragging]= useState(false);
@@ -59,12 +68,26 @@ export default function MediaRow({dataType, header, dataArray}){
     }
 
     //since reusing for podcast and show, check if its a podcast or show and use component as expected
-    let content = dataArray.map(item=>
-        dataType === "podcast" ? <Podcast key={item.id} {...item} /> :
-        dataType === "tv" ? <TvShow key={item.id} {...item} /> :
-        (dataType === "movie" || dataType==="anime"|| dataType==="documentary") ? <AnimeMovie key={item.id} {...item} /> :
-        null
-    );
+    let content = dataArray.map(item => {
+        //toggle for the pop up button display
+        const handleClick = () => {
+                if (!isDragging) { // only trigger if not dragging
+                    setClickedItem(item);
+                    setSeeBox(true);
+                }
+            };
+
+            //pass on handleClick so it can show
+            return dataType === "podcast"
+                ? <Podcast key={item.id} {...item} onClick={handleClick} />
+                : dataType === "tv"
+                ? <TvShow key={item.id} {...item} onClick={handleClick} />
+                : (dataType === "movie" || dataType === "anime" || dataType === "documentary")
+                ? <AnimeMovie key={item.id} {...item} onClick={handleClick} />
+                : null;
+    });
+
+
 
     let contentDiv = isMobile? 
         (
@@ -94,8 +117,22 @@ export default function MediaRow({dataType, header, dataArray}){
                     {content}
                 </ScrollMenu>
             </div>
+            
         </div>
         );
 
-    return contentDiv;
+    return (
+        <div>
+            {contentDiv}
+            {seeBox && (
+                <div>
+                    <div className="backdrop-blur"></div>
+                    <ClickedBox 
+                        ep={clickedItem} 
+                        onClose={() => setSeeBox(false)}
+                    />
+                </div>
+            )}
+        </div>
+    );
 }
