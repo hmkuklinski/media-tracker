@@ -3,12 +3,8 @@ import Podcasts from './components/Podcasts/Podcasts';
 import TvShows from './components/TV/TvShows';
 import Home from './components/Home/Home';
 import {Routes, Route} from "react-router-dom";
-import PodcastTv from './components/Podcasts/PodcastTv';
-import PodcastComedy from './components/Podcasts/PodcastComedy';
-import PodcastCurrent from './components/Podcasts/PodcastCurrent';
-import Queue from './components/Podcasts/Queue';
-import PodcastComplete from './components/Podcasts/PodcastComplete';
 import Category from './components/TV/Category';
+import PodCategory from './components/Podcasts/PodCategory';
 import { chineseDramaInfo, documentaryInfo, kdramaInfo, thaiDramaInfo, tvShowInfo } from './myInfo';
 import International from './components/TV/International';
 import Japanese from './components/TV/Japanese';
@@ -21,11 +17,12 @@ function App() {
         <Route path="/" element={<Home />} />
 
         <Route path="/podcast" element={<Podcasts />} />
-        <Route path="/podcast/current" element={<PodcastCurrent />} />
-        <Route path="/podcast/queue" element={<Queue />} />
-        <Route path="/podcast/complete" element={<PodcastComplete />} />
-        <Route path="/podcast/tv-film" element={<PodcastTv />} />
-        <Route path="/podcast/comedy" element={<PodcastComedy />} />
+        <Route path="/podcast/current" element={<PodCategory header="Currently Listening" isCategory={false} filterText="Listening" />} />
+        <Route path="/podcast/queue" element={<PodCategory header="Podcast Queue" isCategory={false} filterText="To Listen" />} />
+        <Route path="/podcast/complete" element={<PodCategory header="Completed Podcasts" isCategory={false} filterText="Completed" />} />
+        <Route path="/podcast/tv-film" element={<PodCategory header="TV/Film" isCategory={true} filterText="TV/Film" />} />
+        <Route path="/podcast/comedy" element={<PodCategory header="Comedy" isCategory={true} filterText="Comedy" />} />
+        <Route path="/podcast/society" element={<PodCategory header="Society" isCategory={true} filterText="Society" />} />
 
         <Route path="/tv" element={<TvShows />} />
         <Route path="/tv/complete" element={<Category list={tvShowInfo} filterProp="status" filterText="Watched" key="Completed"isMain={true} /> } />

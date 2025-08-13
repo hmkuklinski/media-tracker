@@ -8,21 +8,24 @@ import ClickedBox from './ClickedBox';
 export default function MediaRow({dataType, header, dataArray}){
     //get reference:
     const myRef = useRef(null);
-    const [isMobile, setIsMobile]= useState(false);
 
     //the pop up box when clicking on an item
     const [clickedItem, setClickedItem] = useState(null);
     const [seeBox, setSeeBox] = useState(false);
 
-
-     //check if the user is on mobile:
+    //to handle changes in the tv show display on mobile:
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     useEffect(() => {
-        function handleResize() {
-        setIsMobile(window.innerWidth < 768);
-        }
-        handleResize(); // check on mount
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
         window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
+
+        // cleanup to avoid memory leaks
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
     }, []);
 
 
@@ -81,7 +84,7 @@ export default function MediaRow({dataType, header, dataArray}){
             return dataType === "podcast"
                 ? <Podcast key={item.id} {...item} onClick={handleClick} />
                 : dataType === "tv"
-                ? <TvShow key={item.id} {...item} onClick={handleClick} />
+                ? <TvShow key={item.id} {...item} onClick={handleClick} isMobile={isMobile}/>
                 : (dataType === "movie" || dataType === "anime" || dataType === "documentary")
                 ? <AnimeMovie key={item.id} {...item} onClick={handleClick} />
                 : null;
@@ -89,17 +92,7 @@ export default function MediaRow({dataType, header, dataArray}){
 
 
 
-    let contentDiv = isMobile? 
-        (
-            <div className="media-row-container-mobile">
-                <div className="media-row-header-mobile">
-                    <h3>{header}</h3>
-                </div>
-                <div className="media-row-mobile">
-                    {content}
-                </div>
-            </div>
-        ): (
+    let contentDiv =  (
         <div className="media-row-container">
             <div className="media-row-header">
                 <h3>{header}</h3>
@@ -129,6 +122,7 @@ export default function MediaRow({dataType, header, dataArray}){
                     <div className="backdrop-blur"></div>
                     <ClickedBox 
                         ep={clickedItem} 
+                        dataType={dataType}
                         onClose={() => setSeeBox(false)}
                     />
                 </div>

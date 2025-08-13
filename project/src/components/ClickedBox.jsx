@@ -1,6 +1,12 @@
-export default function ClickedBox({ ep = { genres: [], hosts: [] }, onClose }){
-   const imageSrc = ep.altimg ? ep.altimg : ep.imgsrc;
-
+export default function ClickedBox({ ep = { genres: [], hosts: [] }, onClose, dataType }){
+    
+    let imageSrc;
+    if (dataType==="documentary" || dataType==="anime" || dataType==="movie" || dataType==="podcast"){
+        imageSrc = ep.altimg;
+    }
+    else{
+        imageSrc = ep.imgsrc;
+    }
     return(
         <div className="clicked-box">
             <div className="clicked-box-exit" onClick={onClose}>X</div>
@@ -10,7 +16,13 @@ export default function ClickedBox({ ep = { genres: [], hosts: [] }, onClose }){
                     <img src={imageSrc} alt={ep.id} />
                 </div>
                 <div className="clicked-info">
-                    
+                    {ep.hosts && (
+                        <div className="tv-genres">
+                            <h4>
+                            <b>Hosts: </b>{ep.hosts.join(", ")}
+                            </h4>
+                        </div>
+                    )}
                     {ep.genres && (
                         <div className="tv-genres">
                             <h4>
@@ -35,13 +47,7 @@ export default function ClickedBox({ ep = { genres: [], hosts: [] }, onClose }){
                     <div className="ep-desc">
                         <p>{ep.desc}</p>
                     </div>
-                    {ep.hosts && (
-                        <div className="tv-genres">
-                            <h4>
-                            <b>Hosts: </b>{ep.hosts.join(", ")}
-                            </h4>
-                        </div>
-                    )}
+                    
                     {ep.watchOn && (
                         <div className="tv-site">
                             <h4>

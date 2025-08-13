@@ -60,7 +60,7 @@ export default function NavBar() {
             <ul className="dropdown-submenu-menu">
               <li><NavLink to="/podcast/tv-film" className={({ isActive }) => isActive ? "active" : ""}>TV/Film</NavLink></li>
               <li><NavLink to="/podcast/comedy" className={({ isActive }) => isActive ? "active" : ""}>Comedy</NavLink></li>
-              
+              <li><NavLink to="/podcast/society" className={({ isActive }) => isActive ? "active" : ""}>Society</NavLink></li>
             </ul>
           </li>
         </ul>

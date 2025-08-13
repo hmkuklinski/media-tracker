@@ -19,19 +19,37 @@ export default function Category({list, filterProp, filterText, dataType=null, i
     const iqiyiContent = filtered.filter(show=> show.watchOn.includes("iQIYI"));
     const weTVContent= filtered.filter(show=> show.watchOn.includes("WeTV"));
 
-    //preload the images
-    useEffect(() => {
-        filtered.forEach(show => {
-            const img = new Image();
-            img.src = show.imgsrc;
+   useEffect(() => {
+    // preload both images for smooth swap
+    filtered.forEach(show => {
+        [show.imgsrc, show.altimg].forEach(src => {
+            if (src) {
+                const img = new Image();
+                img.src = src;
+            }
         });
-        
-    }, [filtered, currEp]);
+    });
+    }, [filtered]);
+
+    //to handle changes in the tv show display on mobile:
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        // cleanup to avoid memory leaks
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
 
     //see if there's a passed dataType value (anime, movie, documentary, etc...) --> if not, set to tv
     const dataValue = dataType? dataType: "tv";
     //switch the pic if the dataValue anything besides tv
-    const switchPic = dataValue==="tv"? false: true;
+    const switchPic = (dataValue==="tv" && !isMobile)? false: true;
 
     const pageContents =  (
         <div>

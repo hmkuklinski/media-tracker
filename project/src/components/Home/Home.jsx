@@ -25,18 +25,42 @@ export default function Home(){
     //preload the images
     useEffect(() => {
         filteredStreaming.forEach(show => {
-            const img = new Image();
-            img.src = show.imgsrc;
+           [show.imgsrc, show.altimg].forEach(src => {
+                if (src) {
+                    const img = new Image();
+                    img.src = src;
+                }
+            });
         });
         internationalStreaming.forEach(show => {
-            const img = new Image();
-            img.src = show.imgsrc;
+            [show.imgsrc, show.altimg].forEach(src => {
+                if (src) {
+                    const img = new Image();
+                    img.src = src;
+                }
+            });
         });
     }, [filteredStreaming, internationalStreaming]);
 
+
+    //to handle changes in the tv show display on mobile:
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        // cleanup to avoid memory leaks
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
     return (
         <Layout>
-            <TvLanding {...currEp} id="main-tv" />
+            <TvLanding {...currEp} id="main-tv"/>
             <div className="selection-menu">
                 {filteredRanking.map((ep)=>(
                     <div className={`selection-option ${ep.id === currEp.id? "selected":""}`} onClick={()=>setCurrEp(ep)}>
@@ -45,7 +69,7 @@ export default function Home(){
                 ))}
             </div>
             <MediaRow header="US/UK Dramas" dataType="tv" dataArray={tvShowInfo} />
-            <TvLanding {...currInternational} id="international" />
+            <TvLanding {...currInternational} id="international"/>
             <div className="selection-menu">
                 {internationalRanking.map((ep)=>(
                     <div className={`selection-option ${ep.id === currInternational.id? "selected":""}`} onClick={()=>setCurrInternational(ep)}>
