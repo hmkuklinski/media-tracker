@@ -58,8 +58,13 @@ export default function Home(){
         };
     }, []);
 
-    return (
-        <Layout>
+    const usFeatured = isMobile? (
+        // featured: the boys
+        <div>
+            <TvLanding {...tvShowInfo[52]} id="main-tv"/>
+        </div>
+    ):(
+        <div>
             <TvLanding {...currEp} id="main-tv"/>
             <div className="selection-menu">
                 {filteredRanking.map((ep)=>(
@@ -68,7 +73,16 @@ export default function Home(){
                     </div>
                 ))}
             </div>
-            <MediaRow header="US/UK Dramas" dataType="tv" dataArray={tvShowInfo} />
+        </div>
+    );
+
+    const internationalFeatured = isMobile? (
+        // featured: squid games
+        <div>
+            <TvLanding {...kdramaInfo[0]} id="main-tv"/>
+        </div>
+    ):(
+        <div>
             <TvLanding {...currInternational} id="international"/>
             <div className="selection-menu">
                 {internationalRanking.map((ep)=>(
@@ -77,23 +91,34 @@ export default function Home(){
                     </div>
                 ))}
             </div>
+        </div>
+    );
 
-            <MediaRow header="Korean Dramas" dataType="tv" dataArray={kdramaInfo} />
-            <MediaRow header="Chinese Dramas" dataType="tv" dataArray={chineseDramaInfo} />
-            <MediaRow header="Thai Dramas" dataType="tv"dataArray={thaiDramaInfo} />
-            
-            
+    const docFeatured = isMobile? (
+        // featured: the universe
+        <div>
+            <TvLanding {...documentaryInfo[1]} id="main-tv"/>
+        </div>
+    ):(
+        <div>
             <TvLanding {...currDoc} id="docs" />
-            <div className="selection-menu">
+            <div className="selection-menu" id="docs">
                 {docRanking.map((ep)=>(
                     <div className={`selection-option ${ep.id === currDoc.id? "selected":""}`} onClick={()=>setCurrDoc(ep)}>
                         {ep.id === currDoc.id ? "●" : "○"}
                     </div>
                 ))}
             </div>
-            
-            <MediaRow header="Documentary" dataType="movie" dataArray={documentaryInfo} />
+        </div>
+    );
 
+    const japanFeatured = isMobile? (
+        // featured: the boys
+        <div>
+            <TvLanding {...japanDramaInfo[3]} id="main-tv"/>
+        </div>
+    ):(
+        <div>
             <TvLanding {...currJap} id="jdramas" />
             <div className="selection-menu">
                 {japRanking.map((ep)=>(
@@ -102,6 +127,23 @@ export default function Home(){
                     </div>
                 ))}
             </div>
+        </div>
+    );
+
+    return (
+        <Layout>
+            {usFeatured}
+            <MediaRow header="US/UK Dramas" dataType="tv" dataArray={tvShowInfo} />
+            
+            {internationalFeatured}
+            <MediaRow header="Korean Dramas" dataType="tv" dataArray={kdramaInfo} />
+            <MediaRow header="Chinese Dramas" dataType="tv" dataArray={chineseDramaInfo} />
+            <MediaRow header="Thai Dramas" dataType="tv"dataArray={thaiDramaInfo} />
+            
+            {docFeatured}
+            <MediaRow header="Documentary" dataType="movie" dataArray={documentaryInfo} />
+
+            {japanFeatured}
             <MediaRow header="Japanese Dramas" dataType="tv" dataArray={japanDramaInfo} />
             <MediaRow header="Anime" dataType="anime" dataArray={animeInfo} />
 

@@ -33,45 +33,6 @@ body{
   z-index: 900; 
 }
 
-
-/*----------------------------Media Display Mobile Formatting----------------------------*/
-.media-row-container-mobile{
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  position:relative;
-  left:2%;
-  width: 95%;
-}
-.media-row-mobile{
-  width: 100%;
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-.media-row-container-mobile .media-row-header-mobile{
-  text-align:center;
-  width: 100%;
-  font-size: 30px;
-  margin:60px 0px 15px 0px;
-}
-.media-row-mobile .podcast-container, .media-row-mobile .tv-container{
-  margin: 15px 0px;
-}
-.media-row-mobile .podcast-container img{
-  width: 100%;
-}
-.media-row-mobile .tv-container{
-  width: 100%;
-  height: 270px;
-  margin: 8px 4px;
-}
-.media-row-mobile .tv-container img{
-  width: 100%;
-  height: 265px;
-}
 /*--------------- MOBILE NAVBAR FORMATTING ------------------------------*/
 /* FOR THE NAVBAR!! */
 .nav-mobile{
@@ -388,7 +349,7 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu {
   margin: 15px 0px;
 }
 #international, #docs, #jdramas, #anime{
-  margin-top: 65px;
+  margin-top: 80px;
 }
 
 
@@ -643,10 +604,22 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu {
   .tv-container{
     width: 150px;
     height: 100%;
-    margin: 0px 14px;
+    margin: 0px 6px;
   }
   .tv-container img{
     width:100%;
     height:100%;
+  }
+  .media-row{
+    padding: 3px;
+  }
+  .media-row-header h3{
+    font-size: 26px;
+  }
+  .tv-landing-container{
+    height: 400px;
+  }
+  #international, #docs, #jdramas, #anime{
+    margin-top: 100px;
   }
 }
