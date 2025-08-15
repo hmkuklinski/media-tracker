@@ -1,6 +1,6 @@
 import TvShow from './TV/TvShow';
 import Podcast from './Podcasts/Podcast';
-import { useRef, useState, useEffect } from 'react'; //for click scroll
+import { useRef, useState} from 'react'; //for click scroll
 import { ScrollMenu} from 'react-horizontal-scrolling-menu'; //for touchscreen scroll
 import AnimeMovie from './AM/AnimeMovie';
 import ClickedBox from './ClickedBox';
@@ -13,24 +13,6 @@ export default function MediaRow({dataType, header, dataArray}){
     const [clickedItem, setClickedItem] = useState(null);
     const [seeBox, setSeeBox] = useState(false);
 
-    //to handle changes in the tv show display on mobile:
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
-
-        window.addEventListener("resize", handleResize);
-
-        // cleanup to avoid memory leaks
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
-
-
-
-    
     //track whether user is dragging or not:
     const [isDragging, setIsDragging]= useState(false);
     
@@ -81,10 +63,11 @@ export default function MediaRow({dataType, header, dataArray}){
             };
 
             //pass on handleClick so it can show
+            //TvShow--> want to show the cover photo, so set isMobile to true (use false for clickBox)
             return dataType === "podcast"
                 ? <Podcast key={item.id} {...item} onClick={handleClick} />
                 : dataType === "tv"
-                ? <TvShow key={item.id} {...item} onClick={handleClick} isMobile={isMobile}/>
+                ? <TvShow key={item.id} {...item} onClick={handleClick} isMobile={true}/>
                 : (dataType === "movie" || dataType === "anime" || dataType === "documentary")
                 ? <AnimeMovie key={item.id} {...item} onClick={handleClick} />
                 : null;

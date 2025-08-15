@@ -133,18 +133,19 @@ export default function Home(){
     return (
         <Layout>
             {usFeatured}
+            <MediaRow header="Your Next Watch" dataType="tv" dataArray={tvShowInfo.filter(show=> show.status ==="To Watch")} />
             <MediaRow header="US/UK Dramas" dataType="tv" dataArray={tvShowInfo} />
             
             {internationalFeatured}
-            <MediaRow header="Korean Dramas" dataType="tv" dataArray={kdramaInfo} />
+            <MediaRow header="K-Dramas" dataType="tv" dataArray={kdramaInfo} />
             <MediaRow header="Chinese Dramas" dataType="tv" dataArray={chineseDramaInfo} />
             <MediaRow header="Thai Dramas" dataType="tv"dataArray={thaiDramaInfo} />
             
             {docFeatured}
-            <MediaRow header="Documentary" dataType="movie" dataArray={documentaryInfo} />
+            <MediaRow header="Documentaries" dataType="movie" dataArray={documentaryInfo} />
 
             {japanFeatured}
-            <MediaRow header="Japanese Dramas" dataType="tv" dataArray={japanDramaInfo} />
+            <MediaRow header="J-Dramas" dataType="tv" dataArray={japanDramaInfo} />
             <MediaRow header="Anime" dataType="anime" dataArray={animeInfo} />
 
         </Layout>

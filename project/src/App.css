@@ -11,8 +11,8 @@
   --hamburger: rgb(196, 126, 218);
   --active-page: rgb(196, 126, 218);
   
-  --background-color: whitesmoke;/* colors for the entire page*/
-  --header-text:black;/* colors for the category titles*/
+  --background-color: #1c1d22;/* colors for the entire page*/
+  --header-text:rgb(255, 255, 255);/* colors for the category titles*/
   --landing-text: whitesmoke;/* color for the TvLanding text*/
   
   /*colors for the popup box*/
@@ -91,7 +91,6 @@ body{
   color: var(--nav-hover);
 }
 
-
 .nav-button{
   width: 30%;
   position: absolute;
@@ -128,12 +127,7 @@ body{
 }
 
 
-/*----------------------------Podcast Formatting----------------------------*/
-/* for all podcasts- current, in queue, and completed*/
-.podcasts-container{
-  width: 100%;
-  position:absolute;
-}
+/*---------------------------- Formatting for Content Rows (Horizontal Scroll) ----------------------------*/
 /* holds title and media-row*/
 .media-row-container{
   display:flex;
@@ -157,25 +151,6 @@ body{
   color: var(--header-text);
 }
 
-/* holds the image for the podcast*/
-.podcast-container, .tv-container{
-  margin: 0px 20px;
-}
-
-/*will be to allow for click on podcast and tv for additional info*/
-.podcast-container:hover, .tv-container:hover{
-  cursor:pointer;
-}
-
-/* sizing for the podcast images themselves*/
-.podcast-container img{
-  width: 200px;
-  height: 300px;
-}
-.tv-container img{
-  width: 300px;
-  height: 200px;
-}
 
 /* holds all the podcasts, is scrollable*/
 .media-row {
@@ -229,6 +204,7 @@ body{
   gap: 1rem;
   padding: 0 1rem;
   width: 100%;
+  color:var(--header-text);
 }
 /* styling for unordered list element */
 .nav ul{
@@ -244,7 +220,11 @@ body{
 }
 /* styling for hover on a navbar link*/
 .nav li:hover{
-  text-decoration: underline 3px solid var(--nav-hover);
+  text-decoration: underline 2px solid var(--nav-hover);
+  text-underline-offset: 3px;
+}
+.nav a ion-icon{
+  margin-left: 5px;
 }
 
 /* styling for navbar links*/
@@ -268,6 +248,7 @@ body{
   position: relative;
 }
 
+/* li elements in nav that have dropdowns (Podcast/TV links) */
 .nav .dropdown > span {
   cursor: pointer;
   display: flex;
@@ -288,7 +269,7 @@ body{
   flex-direction: column;
   gap: 0.5rem;
   z-index: 1000;
-  background-color: var(--navbar);
+  background:  var(--background-color);
 }
 /* Each link inside dropdown */
 .nav .dropdown-menu li {
@@ -307,13 +288,13 @@ body{
 }
 
 /*----------------------------NavBar Category Submenu Formatting----------------------------*/
-/* set to relative to allow for proper positioning*/
-.dropdown-submenu {
+/* the Podcast/TV Category link --> has sublinks (set to relative for positioning other submenu) */
+.dropdown-submenu, .dropdown-submenu2 {
   position: relative;
 }
 
 /*position the ul for the submenu*/
-.dropdown-submenu-menu {
+.dropdown-submenu-menu, .dropdown-submenu2-menu {
   display: none;
   position: absolute;
   left: 100%;
@@ -321,18 +302,54 @@ body{
   list-style: none;
   padding: 0;
   margin: 0;
-  background:  var(--navbar);
+  background:  var(--background-color);
   min-width: 150px; 
 }
 
-/*hide the menu options unless hovered*/
-li.dropdown-submenu > ul.dropdown-submenu-menu {
+
+/* Hide submenu2 by default (Japanese, Korean, Thai, Mandarin options in International) */
+li.dropdown-submenu2 > ul.dropdown-submenu2-menu {
   display: none;
 }
 
-li.dropdown-submenu:hover > ul.dropdown-submenu-menu {
+/* Show submenu2 only when hovering "International" */
+li.dropdown-submenu2:hover > ul.dropdown-submenu2-menu {
   display: block;
 }
+
+
+/*hide the menu options unless hovered*/
+li.dropdown-submenu > ul.dropdown-submenu-menu, ul.dropdown-submenu2-menu {
+  display: none;
+}
+
+li.dropdown-submenu:hover > ul.dropdown-submenu-menu, li.dropdown-submenu-menu:hover > ul.dropdown-submenu2-menu {
+  display: block;
+}
+
+
+/*----------------------------Podcast Formatting----------------------------*/
+/* for all podcasts- current, in queue, and completed*/
+.podcasts-container{
+  width: 100%;
+  position:absolute;
+}
+/* holds the image for the podcast*/
+.podcast-container{
+  margin: 0px 20px;
+}
+
+/*will be to allow for click on podcast and tv for additional info*/
+.podcast-container:hover, .tv-container:hover{
+  cursor:pointer;
+}
+
+/* sizing for the podcast images themselves*/
+.podcast-container img{
+  width: 200px;
+  height: 300px;
+}
+
 
 /*----------------------------TV Landing Formatting----------------------------*/
 /* entire featured tv show container- holds the background image*/
@@ -342,16 +359,20 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu {
   align-items: flex-end;
   justify-content: flex-start;
   background-size: cover;
-  background-position: center;
+  background-position:  center top;
   position:relative;
-  width: 88%;
-  left: 8%;
-  margin: 15px 0px;
+  width: 91%;
+  left: 6%;
+  margin-top:15px;
+  color:var(--header-text);
 }
 #international, #docs, #jdramas, #anime{
   margin-top: 80px;
 }
 
+.selection-option{
+  color: var(--header-text);
+}
 
 /* holds the featured title and the episode information*/
 .tv-content-main{
@@ -363,7 +384,6 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu {
   width: 33%;
   left: 20px;
   top: 0px;
-  /* background-color: rgba(245, 245, 245, 0.39); */
   color:var(--landing-text);
   border-radius: 20px;
   padding: 6px;
@@ -378,39 +398,44 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu {
   padding: 10px;
   background-color: #33333388;
 }
+
+/*title of tv show in tv landing*/
 .tv-title{
   width:100%;
 }
+/*tv description text formatting*/
 .tv-desc p{
   font-size: 16px;
   word-spacing: 0.1rem;
   margin: 10px 0px;
 }
+/* the bubbles that act as the navigation for the landing sections*/
 .selection-menu{
   display:flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
   flex-wrap:wrap;
-  flex-wrap:wrap;
 }
+/* each individual circle in the landing navigation*/
 .selection-option {
   font-size: 24px;
   cursor:pointer;
   margin: 0px 5px;
 }
 
-.anime-movie-container{
+/*----------------------------Formatting of TV/Anime/Movie Cover Photos (in MediaRow)----------------------------*/
+.anime-movie-container, .tv-container{
   width: 150px;
   height: 100%;
-  margin: 0px 14px;
+  margin-right:14px;
 }
-.anime-movie-container img{
+.anime-movie-container img, .tv-container img{
   width:100%;
   height:100%;
 }
 
-
+/*----------------------------CLICKED BOX Formatting----------------------------*/
 /* formatting for the pop up on click for Podcast, TVShow, AnimeMovie*/
 .clicked-box{
   display:flex;
@@ -427,6 +452,7 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu {
   top: 10%;
   padding: 8px;
 }
+/*format for content of the clicked box*/
 .clicked-content{
   display:flex;
   align-items: center;
@@ -437,22 +463,23 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu {
   text-align: center;
   color: var(--popup-text);
 }
+/* format for the div holding img inside the pop up*/
 .clicked-img{
   width: 90%;
   height: 350px;
   margin-top: 10px;
 }
-.clicked-img .pod img{
-  width: 50%;
-}
+
 .clicked-img img{
   width:100%;
   height: 340px;
 }
+/* div that holds podcast title or tv show title */
 .clicked-title{
   margin-top: 15px;
 }
 
+/* div that holds the exit "button" for the popup */
 .clicked-box-exit{
   position:absolute;
   right: 4%;
@@ -461,6 +488,7 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu {
   color:var(--popup-x);
   font-size: 26px;
 }
+/* description of the podcast/tv show/movie */
 .ep-desc{
   padding: 10px;
   width: 92%;
@@ -471,22 +499,23 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu {
   font-size: 15px;
 }
 
-/* formatting for the podcast landing content*/
+/*----------------------------PODCAST Landing Formatting----------------------------*/
+/* formatting for the podcast landing content- podcast img, title, hosts, description*/
 .pod-landing-container{
   display:flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
   position:relative;
-  left: 3%;
+  left: 0%;
   width: 95%;
   gap: 1.5rem;
-  margin-top: 40px;
+  margin: 40px 0px 20px 0px;
   padding: 8px;
-  /* background-color: #33333388; */
+  background-color: #33333388;
   height: auto;
+ 
 }
-
 /* width of podcast img container*/
 .pod-img{
   width: 50%;
@@ -498,11 +527,12 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu {
   align-items: center;
   justify-content:flex-start;
   flex-direction: column;
-  color:black;
+  color:var(--header-text);
   border-radius: 20px;
   padding: 6px;
   height:90%;
 }
+/* holds all the text information for podcast*/
 .pod-content{
   display:flex;
   align-items: flex-start;
@@ -511,11 +541,12 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu {
   width: 100%;
   padding: 10px;
 }
-/**/
+/* containers that hold the podcast hosts and genres*/
 .pod-hosts, .pod-genres{
   width:100%;
   margin-top: 10px;
 }
+/* format h4 elements for text in host and genres div*/
 .pod-hosts h4, .pod-genres h4{
   font-weight: 500;
   font-size: 15px;
@@ -526,13 +557,40 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu {
   height: 450px;
 }
 .pod-desc{
-  margin: 10px 0px;
+  margin: 12px 0px;
 }
 .pod-desc p{
   font-size:17px;
 }
 
+/*----------------------------Podcast Landing Formatting MOBILE----------------------------*/
+.landing-buttons, .prev-button, .next-button{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction:row;
+}
+/* container that holds all the nav buttons for podcast mobile*/
+.landing-buttons{
+  margin-bottom: 20px;
+}
+/* format for the button div's themselves */
+.prev-button, .next-button, .home-button{
+  margin: 0px 14px;
+  cursor:pointer;
+  color:var(--header-text);
+}
+/* spacing for the ion icons*/
+.prev-button ion-icon,  .next-button ion-icon{
+  margin: 0px 10px;
+}
+/* change size of home button since no text*/
+.home-button ion-icon{
+  font-size: 21px;
+}
 
+
+/*----------------------------MOBILE Formatting----------------------------*/
 @media (max-width: 768px){
   .tv-content-main{
     width: 95%;
@@ -622,4 +680,5 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu {
   #international, #docs, #jdramas, #anime{
     margin-top: 100px;
   }
+  
 }

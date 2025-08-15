@@ -8,6 +8,7 @@ import PodCategory from './components/Podcasts/PodCategory';
 import { chineseDramaInfo, documentaryInfo, kdramaInfo, thaiDramaInfo, tvShowInfo } from './myInfo';
 import International from './components/TV/International';
 import Japanese from './components/TV/Japanese';
+import Movies from './components/AM/Movies';
 
 
 function App() {
@@ -47,6 +48,8 @@ function App() {
         <Route path="/tv/korean" element={<Category list={kdramaInfo} filterProp="genres" filterText="Korean" key="Korean"isMain={true}/>} />
         <Route path="/tv/mandarin" element={<Category list={chineseDramaInfo} filterProp="genres" filterText="Mandarin" key="Mandarin"isMain={true}/>} />
         <Route path="/tv/thai" element={<Category list={thaiDramaInfo} filterProp="genres" filterText="Thai" key="Thai"isMain={true}/>} />
+
+        <Route path="/movies" element={<Movies />} />
       </Routes>
     </div>
   );

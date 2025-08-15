@@ -2,7 +2,6 @@ import {useState, useEffect} from "react";
 import { NavLink, useLocation} from "react-router-dom";
 
 export default function NavBar() {
-  const navlogo = <img src="https://static.vecteezy.com/system/resources/previews/011/516/480/non_2x/podcast-talk-tv-logo-design-chat-tv-logo-design-combined-with-podcast-mic-free-vector.jpg" alt="logo-img" />;
   const [isMobile, setIsMobile] = useState(false);
   const [showHamburger, setShowHamburger]= useState(false);
 
@@ -29,13 +28,8 @@ export default function NavBar() {
   const myLinks = [
     {id:"home", text:"Home", link:"/"},
     {id:"podcast", text:"Podcasts", link:"/podcast"},
-    // {id:"podcast-current", text:"Currently Listening", link:"/podcast/current"},
-    // {id:"podcast-complete", text:"Completed Podcasts", link:"/podcast/complete"},
-    // {id:"podcast-queue", text:"Podcast Queue", link:"/podcast/queue"},
     {id:"tv", text:"TV Shows", link:"/tv"},
-    // {id:"tv-current", text:"Now Watching", link:"/tv/current"},
-    // {id:"tv-queue", text:"Watchlist", link:"/tv/watchlist"},
-    // {id:"tv-complete", text:"Completed Shows", link:"/tv/complete"},
+    {id:"movies", text:"Movies", link:"/movies"},
   ];
 
   let pageTitle="Hannah's Media";
@@ -56,7 +50,7 @@ export default function NavBar() {
           <li><NavLink to="/podcast/queue" className={({ isActive }) => isActive ? "active" : ""}>Queue</NavLink></li>
           <li><NavLink to="/podcast/complete" className={({ isActive }) => isActive ? "active" : ""}>Completed</NavLink></li>
           <li className="dropdown-submenu">
-            <span><NavLink to="/podcast" className={({ isActive }) => isActive ? "active" : ""}>Podcast Categories</NavLink></span>
+            <span><NavLink to="/podcast" className={({ isActive }) => isActive ? "active" : ""}>Podcast Categories  <ion-icon name="chevron-forward-outline"></ion-icon></NavLink></span>
             <ul className="dropdown-submenu-menu">
               <li><NavLink to="/podcast/tv-film" className={({ isActive }) => isActive ? "active" : ""}>TV/Film</NavLink></li>
               <li><NavLink to="/podcast/comedy" className={({ isActive }) => isActive ? "active" : ""}>Comedy</NavLink></li>
@@ -68,11 +62,12 @@ export default function NavBar() {
       <li className="dropdown">
         <span><NavLink to="/tv" className={({ isActive }) => isActive ? "active" : ""}>TV</NavLink></span>
         <ul className="dropdown-menu">
-          <li><NavLink to="/tv/current" className={({ isActive }) => isActive ? "active" : ""}>Watching</NavLink></li>
+          <li><NavLink to="/tv/current" className={({ isActive }) => isActive ? "active" : ""}>Now Watching</NavLink></li>
           <li><NavLink to="/tv/watchlist" className={({ isActive }) => isActive ? "active" : ""}>Watchlist</NavLink></li>
           <li><NavLink to="/tv/complete" className={({ isActive }) => isActive ? "active" : ""}>Watched</NavLink></li>
+          {/* tv category drop down */}
           <li className="dropdown-submenu">
-            <span><NavLink to="/tv" className={({ isActive }) => isActive ? "active" : ""}>TV Categories</NavLink></span>
+            <span><NavLink to="/tv" className={({ isActive }) => isActive ? "active" : ""}>TV Categories   <ion-icon name="chevron-forward-outline"></ion-icon></NavLink></span>
             <ul className="dropdown-submenu-menu">
               <li><NavLink to="/tv/action" className={({ isActive }) => isActive ? "active" : ""}>Action</NavLink></li>
               <li><NavLink to="/tv/comedy" className={({ isActive }) => isActive ? "active" : ""}>Comedy</NavLink></li>
@@ -80,17 +75,42 @@ export default function NavBar() {
               <li><NavLink to="/tv/criminal" className={({ isActive }) => isActive ? "active" : ""}>Criminal/Vigilantes</NavLink></li>
               <li><NavLink to="/tv/documentary" className={({ isActive }) => isActive ? "active" : ""}>Documentary</NavLink></li>
               <li><NavLink to="/tv/fire" className={({ isActive }) => isActive ? "active" : ""}>Fire</NavLink></li>
-               <li><NavLink to="/tv/international" className={({ isActive }) => isActive ? "active" : ""}>International</NavLink></li>
-              {/* <li><NavLink to="/tv/japanese" className={({ isActive }) => isActive ? "active" : ""}>Japanese</NavLink></li> */}
-              {/* <li><NavLink to="/tv/korean" className={({ isActive }) => isActive ? "active" : ""}>Korean</NavLink></li> */}
+              {/* international dropdown */}
+              <li className="dropdown-submenu2">
+                <span><NavLink to="/tv/international" className={({ isActive }) => isActive ? "active" : ""}>International <ion-icon name="chevron-forward-outline"></ion-icon></NavLink></span>
+                <ul className="dropdown-submenu2-menu">
+                <li><NavLink to="/tv/japanese" className={({ isActive }) => isActive ? "active" : ""}>Japanese</NavLink></li>
+                <li><NavLink to="/tv/korean" className={({ isActive }) => isActive ? "active" : ""}>Korean</NavLink></li> 
+                <li><NavLink to="/tv/mandarin" className={({ isActive }) => isActive ? "active" : ""}>Mandarin</NavLink></li> 
+                <li><NavLink to="/tv/thai" className={({ isActive }) => isActive ? "active" : ""}>Thai</NavLink></li>
+                </ul>
+              </li>
               <li><NavLink to="/tv/law" className={({ isActive }) => isActive ? "active" : ""}>Law/Political</NavLink></li>
-              {/* <li><NavLink to="/tv/mandarin" className={({ isActive }) => isActive ? "active" : ""}>Mandarin</NavLink></li> */}
               <li><NavLink to="/tv/medical" className={({ isActive }) => isActive ? "active" : ""}>Medical</NavLink></li>
               <li><NavLink to="/tv/medieval" className={({ isActive }) => isActive ? "active" : ""}>Medieval</NavLink></li>
               <li><NavLink to="/tv/supernatural" className={({ isActive }) => isActive ? "active" : ""}>SciFi</NavLink></li>
               <li><NavLink to="/tv/superhero" className={({ isActive }) => isActive ? "active" : ""}>Superhero</NavLink></li>
-              {/* <li><NavLink to="/tv/thai" className={({ isActive }) => isActive ? "active" : ""}>Thai</NavLink></li> */}
               <li><NavLink to="/tv/thriller" className={({ isActive }) => isActive ? "active" : ""}>Thriller</NavLink></li>
+            </ul>
+          </li>
+          
+        </ul>
+      </li>
+      <li className="dropdown">
+        <span><NavLink to="/movies" className={({ isActive }) => isActive ? "active" : ""}>Movies</NavLink></span>
+        <ul className="dropdown-menu">
+          <li><NavLink to="/movies/current" className={({ isActive }) => isActive ? "active" : ""}>Now Watching</NavLink></li>
+          <li><NavLink to="/movies/queue" className={({ isActive }) => isActive ? "active" : ""}>Watchlist</NavLink></li>
+          <li><NavLink to="/movies/complete" className={({ isActive }) => isActive ? "active" : ""}>Completed</NavLink></li>
+          <li className="dropdown-submenu">
+            <span><NavLink to="/podcast" className={({ isActive }) => isActive ? "active" : ""}>Movie Categories  <ion-icon name="chevron-forward-outline"></ion-icon></NavLink></span>
+            <ul className="dropdown-submenu-menu">
+              <li><NavLink to="/movies/action" className={({ isActive }) => isActive ? "active" : ""}>Action</NavLink></li>
+              <li><NavLink to="/movies/classic" className={({ isActive }) => isActive ? "active" : ""}>Classics</NavLink></li>
+              <li><NavLink to="/movies/comedy" className={({ isActive }) => isActive ? "active" : ""}>Comedy</NavLink></li>
+              <li><NavLink to="/movies/international" className={({ isActive }) => isActive ? "active" : ""}>International</NavLink></li>
+              <li><NavLink to="/movies/romance" className={({ isActive }) => isActive ? "active" : ""}>Romance</NavLink></li>
+              <li><NavLink to="/movies/thriller" className={({ isActive }) => isActive ? "active" : ""}>Thrillers</NavLink></li>
             </ul>
           </li>
         </ul>
@@ -127,7 +147,6 @@ export default function NavBar() {
   }
   return (
     <nav className="nav">
-      {navlogo}
       {navUl}
     </nav>
   );
