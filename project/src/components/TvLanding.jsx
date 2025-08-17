@@ -11,14 +11,6 @@ export default function TvLanding(props){
                             {props.rating}
                         </div>
                     )}
-                    {/* <div className="watch-status">
-                        <h4>
-                            Status: 
-                            {props.status==="Complete" && "✅ Completed"}
-                            {(props.status==="Watching" || props.status === "Streaming") && "👀 Now Watching"}
-                            {props.status==="To Watch" && "📝 On Watchlist"}
-                        </h4>
-                    </div> */}
 
                     <div className="tv-desc">
                         <p>{props.desc}</p>

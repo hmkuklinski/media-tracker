@@ -1,5 +1,5 @@
 import Layout from "../Layout";
-import {chineseDramaInfo, kdramaInfo, tvShowInfo, thaiDramaInfo, internationalInfo, documentaryInfo, featuredDocs, japanDramaInfo, animeInfo} from "../../myInfo";
+import {chineseDramaInfo, kdramaInfo, tvShowInfo, thaiDramaInfo, internationalInfo, documentaryInfo, featuredDocs, japanDramaInfo, animeInfo, internationalFilms, myMovies} from "../../myInfo";
 import { useState, useEffect} from "react";
 import TvLanding from "../TvLanding";
 import MediaRow from '../MediaRow';
@@ -9,6 +9,10 @@ export default function Home(){
     const filteredRanking = filteredStreaming.sort((a, b) => b.rating.length - a.rating.length);
     const [currEp, setCurrEp]= useState(filteredRanking[0]);
 
+    const movieStreaming = [...myMovies, ...internationalFilms].filter(show => show.status === "Featured");
+    const movieRanking = movieStreaming.sort((a, b) => b.rating.length - a.rating.length);
+    const [currMovie, setCurrMovie]= useState(movieRanking[0]);
+
     const internationalStreaming = internationalInfo.filter(show => show.status === "Featured");
     const internationalRanking = internationalStreaming.sort((a, b) => b.rating.length - a.rating.length);
     const [currInternational, setCurrInternational]= useState(internationalRanking[0]);
@@ -17,10 +21,9 @@ export default function Home(){
     const docRanking = docStreaming.sort((a, b) => b.rating.length - a.rating.length);
     const [currDoc, setCurrDoc]= useState(docRanking[0]);
 
-    const japStreaming = [...japanDramaInfo, ...animeInfo].filter(show => show.status === "Featured");
-    const japRanking = japStreaming.sort((a, b) => b.rating.length - a.rating.length);
-    const [currJap, setCurrJap]= useState(japRanking[0]);
-
+    const animatedStreaming = [...japanDramaInfo].filter(show => show.status === "Featured");
+    const animatedRanking = animatedStreaming.sort((a, b) => b.rating.length - a.rating.length);
+    const [currAnimated, setCurrAnimated]= useState(animatedRanking[0]);
 
     //preload the images
     useEffect(() => {
@@ -40,7 +43,31 @@ export default function Home(){
                 }
             });
         });
-    }, [filteredStreaming, internationalStreaming]);
+        docStreaming.forEach(show => {
+            [show.imgsrc, show.altimg].forEach(src => {
+                if (src) {
+                    const img = new Image();
+                    img.src = src;
+                }
+            });
+        });
+        animatedStreaming.forEach(show => {
+            [show.imgsrc, show.altimg].forEach(src => {
+                if (src) {
+                    const img = new Image();
+                    img.src = src;
+                }
+            });
+        });
+        movieStreaming.forEach(show => {
+            [show.imgsrc, show.altimg].forEach(src => {
+                if (src) {
+                    const img = new Image();
+                    img.src = src;
+                }
+            });
+        });
+    }, [filteredStreaming, internationalStreaming, docStreaming, animatedStreaming, movieStreaming]);
 
 
     //to handle changes in the tv show display on mobile:
@@ -112,23 +139,42 @@ export default function Home(){
         </div>
     );
 
-    const japanFeatured = isMobile? (
-        // featured: the boys
+    const animatedFeatured = isMobile? (
+        // featured: spy x family
         <div>
-            <TvLanding {...japanDramaInfo[3]} id="main-tv"/>
+            <TvLanding {...animeInfo[1]} id="main-tv"/>
         </div>
     ):(
         <div>
-            <TvLanding {...currJap} id="jdramas" />
+            <TvLanding {...currAnimated}  id="jdramas" />
             <div className="selection-menu">
-                {japRanking.map((ep)=>(
-                    <div className={`selection-option ${ep.id === currJap.id? "selected":""}`} onClick={()=>setCurrJap(ep)}>
-                        {ep.id === currJap.id ? "●" : "○"}
+                {animatedRanking.map((ep)=>(
+                    <div className={`selection-option ${ep.id === currAnimated.id? "selected":""}`} onClick={()=>setCurrAnimated(ep)}>
+                        {ep.id === currAnimated.id ? "●" : "○"}
                     </div>
                 ))}
             </div>
         </div>
     );
+     const movieFeatured = isMobile? (
+        // featured: 
+        <div>
+            <TvLanding {...myMovies[12]} id="main-tv"/>
+        </div>
+    ):(
+        <div>
+            <TvLanding {...currMovie} switchPic={true} id="childhood" />
+            <div className="selection-menu">
+                {movieStreaming.map((ep)=>(
+                    <div className={`selection-option ${ep.id === currMovie.id? "selected":""}`} onClick={()=>setCurrMovie(ep)}>
+                        {ep.id === currMovie.id ? "●" : "○"}
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+
+    
 
     return (
         <Layout>
@@ -136,17 +182,22 @@ export default function Home(){
             <MediaRow header="Your Next Watch" dataType="tv" dataArray={tvShowInfo.filter(show=> show.status ==="To Watch")} />
             <MediaRow header="US/UK Dramas" dataType="tv" dataArray={tvShowInfo} />
             
+            {movieFeatured}
+            <MediaRow header="Featured Films" dataType="movie" dataArray={myMovies} />
+            <MediaRow header="International Films" dataType="movie" dataArray={internationalFilms} />
+
             {internationalFeatured}
             <MediaRow header="K-Dramas" dataType="tv" dataArray={kdramaInfo} />
             <MediaRow header="Chinese Dramas" dataType="tv" dataArray={chineseDramaInfo} />
             <MediaRow header="Thai Dramas" dataType="tv"dataArray={thaiDramaInfo} />
             
-            {docFeatured}
-            <MediaRow header="Documentaries" dataType="movie" dataArray={documentaryInfo} />
-
-            {japanFeatured}
+            {animatedFeatured}
             <MediaRow header="J-Dramas" dataType="tv" dataArray={japanDramaInfo} />
             <MediaRow header="Anime" dataType="anime" dataArray={animeInfo} />
+            
+            {docFeatured}
+            <MediaRow header="Documentaries" dataType="movie" dataArray={documentaryInfo} />
+            <MediaRow header="Documentary Films" dataType="movie" dataArray={myMovies.filter(show=> show.genres.includes("Documentary"))} />
 
         </Layout>
     );

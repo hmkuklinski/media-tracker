@@ -30,12 +30,15 @@ export default function NavBar() {
     {id:"podcast", text:"Podcasts", link:"/podcast"},
     {id:"tv", text:"TV Shows", link:"/tv"},
     {id:"movies", text:"Movies", link:"/movies"},
+    {id:"childhood", text:"Childhood Faves", link:"/childhood"}
   ];
 
   let pageTitle="Hannah's Media";
   if (path === "/") pageTitle = "Home";
   else if (path.startsWith("/podcast")) pageTitle = "Podcasts";
   else if (path.startsWith("/tv")) pageTitle = "TV Shows";
+  else if (path.startsWith("/movies")) pageTitle = "Movies";
+  else if (path.startsWith("/childhood")) pageTitle = "Childhood Faves";
 
   
 
@@ -70,6 +73,14 @@ export default function NavBar() {
             <span><NavLink to="/tv" className={({ isActive }) => isActive ? "active" : ""}>TV Categories   <ion-icon name="chevron-forward-outline"></ion-icon></NavLink></span>
             <ul className="dropdown-submenu-menu">
               <li><NavLink to="/tv/action" className={({ isActive }) => isActive ? "active" : ""}>Action</NavLink></li>
+              <li className="dropdown-submenu2">
+                <span><NavLink to="/tv/animated" className={({ isActive }) => isActive ? "active" : ""}>Animated <ion-icon name="chevron-forward-outline"></ion-icon></NavLink></span>
+                <ul className="dropdown-submenu2-menu">
+                  <li><NavLink to="/tv/anime" className={({ isActive }) => isActive ? "active" : ""}>Anime</NavLink></li>
+                  <li><NavLink to="/tv/childhood-animated" className={({ isActive }) => isActive ? "active" : ""}>Childhood Cartoons</NavLink></li> 
+                  <li><NavLink to="/tv/adult-animated" className={({ isActive }) => isActive ? "active" : ""}>Animated TV</NavLink></li> 
+                </ul>
+              </li>
               <li><NavLink to="/tv/comedy" className={({ isActive }) => isActive ? "active" : ""}>Comedy</NavLink></li>
               <li><NavLink to="/tv/crime" className={({ isActive }) => isActive ? "active" : ""}>Police</NavLink></li>
               <li><NavLink to="/tv/criminal" className={({ isActive }) => isActive ? "active" : ""}>Criminal/Vigilantes</NavLink></li>
@@ -111,11 +122,11 @@ export default function NavBar() {
               <li><NavLink to="/movies/horror" className={({ isActive }) => isActive ? "active" : ""}>Horror</NavLink></li>
               <li><NavLink to="/movies/international" className={({ isActive }) => isActive ? "active" : ""}>International</NavLink></li>
               <li><NavLink to="/movies/romance" className={({ isActive }) => isActive ? "active" : ""}>Romance</NavLink></li>
-              <li><NavLink to="/movies/thriller" className={({ isActive }) => isActive ? "active" : ""}>Thrillers</NavLink></li>
             </ul>
           </li>
         </ul>
       </li>
+      <li><NavLink to="/childhood" className={({ isActive }) => isActive ? "active" : ""}>Just a Girl</NavLink></li>
     </ul>
   );
    const navMobile = (

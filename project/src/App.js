@@ -5,10 +5,12 @@ import Home from './components/Home/Home';
 import {Routes, Route} from "react-router-dom";
 import Category from './components/TV/Category';
 import PodCategory from './components/Podcasts/PodCategory';
-import { childhoodMovies, chineseDramaInfo, documentaryInfo, internationalFilms, kdramaInfo, myMovies, thaiDramaInfo, tvShowInfo } from './myInfo';
+import { animatedAdult, animeInfo, childhoodCartoons, childhoodMovies, chineseDramaInfo, documentaryInfo, internationalFilms, kdramaInfo, myMovies, thaiDramaInfo, tvShowInfo } from './myInfo';
 import International from './components/TV/International';
 import Japanese from './components/TV/Japanese';
 import Movies from './components/AM/Movies';
+import Animes from './components/AM/Animes';
+import Throwback from './components/Throwbacks/Throwback';
 
 
 function App() {
@@ -34,21 +36,25 @@ function App() {
         <Route path="/tv/crime" element={<Category list={tvShowInfo} filterProp="genres" filterText="Crime" key="Crime"isMain={true}/>} />
         <Route path="/tv/criminal" element={<Category list={tvShowInfo} filterProp="genres" filterText="Criminal" key="Criminal"isMain={true}/>} />
         <Route path="/tv/fire" element={<Category list={tvShowInfo} filterProp="genres" filterText="Fire" key="Fire"isMain={true}/>} />
-        <Route path="/tv/law" element={<Category list={tvShowInfo} filterProp="genres" filterText="Law" key="Law"isMain={true}/>} />
+        <Route path="/tv/law" element={<Category list={tvShowInfo} filterProp="genres" filterText="Political" key="Law"isMain={true}/>} />
         <Route path="/tv/medical" element={<Category list={tvShowInfo} filterProp="genres" filterText="Medical" key="Medical"isMain={true}/>} />
         <Route path="/tv/medieval" element={<Category list={tvShowInfo} filterProp="genres" filterText="Medieval" key="Medieval"isMain={true} />} />
         <Route path="/tv/action" element={<Category list={tvShowInfo} filterProp="genres" filterText="Action" key="Action"isMain={true}/>} />
         <Route path="/tv/supernatural" element={<Category list={tvShowInfo} filterProp="genres" filterText="Supernatural" key="Supernatural"isMain={true}/>} />
         <Route path="/tv/superhero" element={<Category list={tvShowInfo} filterProp="genres" filterText="Superhero" key="Superhero"isMain={true}/>} />
         <Route path="/tv/thriller" element={<Category list={tvShowInfo} filterProp="genres" filterText="Thriller" key="Thriller"isMain={true}/>} />
-        <Route path="/tv/political" element={<Category list={tvShowInfo} filterProp="genres" filterText="Political" key="Political"isMain={true}/>} />
         <Route path="/tv/documentary" element={<Category list={documentaryInfo} filterProp="genres" filterText="Documentary" key="Documentary" dataType="documentary" isMain={true}/>} />
         <Route path="/tv/international" element={<International />} />
         <Route path="/tv/japanese" element={<Japanese isMain={true}/>} />
         <Route path="/tv/korean" element={<Category list={kdramaInfo} filterProp="genres" filterText="Korean" key="Korean"isMain={true} />} />
         <Route path="/tv/mandarin" element={<Category list={chineseDramaInfo} filterProp="genres" filterText="Mandarin" key="Mandarin"isMain={true}/>} />
         <Route path="/tv/thai" element={<Category list={thaiDramaInfo} filterProp="genres" filterText="Thai" key="Thai"isMain={true}/>} />
-
+        
+        <Route path="/tv/animated" element={<Animes />} />
+        <Route path="/tv/anime" element={<Category list={animeInfo} filterProp="genres" filterText="Anime" key="Anime"isMain={true}  dataType="anime"/>}  />
+        <Route path="/tv/childhood-animated" element={<Category list={childhoodCartoons} filterProp="genres" filterText="Childhood" key="Cartoons"isMain={true}  dataType="anime"/>} />
+        <Route path="/tv/adult-animated" element={<Category list={animatedAdult} filterProp="genres" filterText="Animated" key="Animated"isMain={true}  dataType="anime"/>} />
+        
         <Route path="/movies" element={<Movies />} />
         <Route path="/movies/complete" element={<Category list={myMovies} filterProp="status" filterText="Watched" key="Watched"isMain={true} dataType="movie" /> } />
         <Route path="/movies/queue" element={<Category list={myMovies} filterProp="status" filterText="To Watch" key="To Watch"isMain={true} dataType="movie"/>} />
@@ -61,6 +67,8 @@ function App() {
         <Route path="/movies/romance" element={<Category list={myMovies} filterProp="genres" filterText="Romance" key="mRomance"isMain={true} dataType="movie"/>} />
         <Route path="/movies/childhood" element={<Category list={childhoodMovies} filterProp="genres" filterText="Childhood" key="mkids"isMain={true} dataType="movie"/>} />
         <Route path="/movies/thriller" element={<Category list={myMovies} filterProp="genres" filterText="Thriller" key="Thriller"isMain={true} dataType="movie"/>} />
+      
+        <Route path="/childhood" element={<Throwback /> } />
       </Routes>
     </div>
   );
