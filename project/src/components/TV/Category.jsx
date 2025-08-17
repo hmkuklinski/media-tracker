@@ -14,6 +14,7 @@ export default function Category({list, filterProp, filterText, dataType=null, i
     const netflixContent = filtered.filter(show=> show.watchOn.includes("Netflix"));
     const huluContent = filtered.filter(show=> show.watchOn.includes("Hulu"));
     const paramountContent = filtered.filter(show=> show.watchOn.includes("Paramount+"));
+    const disneyContent = filtered.filter(show=> show.watchOn.includes("Disney+"));
     const primeContent =filtered.filter(show=> show.watchOn.includes("Amazon Prime Video"));
     const vikiContent = filtered.filter(show=> show.watchOn.includes("Viki"));
     const iqiyiContent = filtered.filter(show=> show.watchOn.includes("iQIYI"));
@@ -65,6 +66,7 @@ export default function Category({list, filterProp, filterText, dataType=null, i
             {netflixContent.length>0  &&  <MediaRow header="Now Streaming on Netflix" dataType={dataValue} dataArray={netflixContent} />}
             {huluContent.length >0 &&  <MediaRow header="Now Streaming on Hulu" dataType={dataValue} dataArray={huluContent} />}
             {paramountContent.length > 0 && <MediaRow header="Now Streaming on Paramount+" dataType={dataValue} dataArray={paramountContent} />}
+            {disneyContent.length >0 &&  <MediaRow header="Now Streaming on Disney+" dataType={dataValue} dataArray={disneyContent} /> }
             {primeContent.length >0 &&  <MediaRow header="Now Streaming on Prime Video" dataType={dataValue} dataArray={primeContent} /> }
             {vikiContent.length >0 &&  <MediaRow header="Now Streaming on Viki" dataType={dataValue} dataArray={vikiContent} /> }
             {iqiyiContent.length >0 &&  <MediaRow header="Now Streaming on iQIYI" dataType={dataValue} dataArray={iqiyiContent} /> }

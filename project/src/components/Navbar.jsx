@@ -99,15 +99,16 @@ export default function NavBar() {
       <li className="dropdown">
         <span><NavLink to="/movies" className={({ isActive }) => isActive ? "active" : ""}>Movies</NavLink></span>
         <ul className="dropdown-menu">
-          <li><NavLink to="/movies/current" className={({ isActive }) => isActive ? "active" : ""}>Now Watching</NavLink></li>
           <li><NavLink to="/movies/queue" className={({ isActive }) => isActive ? "active" : ""}>Watchlist</NavLink></li>
           <li><NavLink to="/movies/complete" className={({ isActive }) => isActive ? "active" : ""}>Completed</NavLink></li>
           <li className="dropdown-submenu">
-            <span><NavLink to="/podcast" className={({ isActive }) => isActive ? "active" : ""}>Movie Categories  <ion-icon name="chevron-forward-outline"></ion-icon></NavLink></span>
+            <span><NavLink to="/movies" className={({ isActive }) => isActive ? "active" : ""}>Movie Categories  <ion-icon name="chevron-forward-outline"></ion-icon></NavLink></span>
             <ul className="dropdown-submenu-menu">
               <li><NavLink to="/movies/action" className={({ isActive }) => isActive ? "active" : ""}>Action</NavLink></li>
+              <li><NavLink to="/movies/childhood" className={({ isActive }) => isActive ? "active" : ""}>Childhood</NavLink></li>
               <li><NavLink to="/movies/classic" className={({ isActive }) => isActive ? "active" : ""}>Classics</NavLink></li>
               <li><NavLink to="/movies/comedy" className={({ isActive }) => isActive ? "active" : ""}>Comedy</NavLink></li>
+              <li><NavLink to="/movies/horror" className={({ isActive }) => isActive ? "active" : ""}>Horror</NavLink></li>
               <li><NavLink to="/movies/international" className={({ isActive }) => isActive ? "active" : ""}>International</NavLink></li>
               <li><NavLink to="/movies/romance" className={({ isActive }) => isActive ? "active" : ""}>Romance</NavLink></li>
               <li><NavLink to="/movies/thriller" className={({ isActive }) => isActive ? "active" : ""}>Thrillers</NavLink></li>

@@ -128,7 +128,6 @@ export default function Movies(){
             {internationalFeatured}
             <MediaRow header="International Films" dataType="movie" dataArray={internationalFilms} />
             
-            
             {kidFeatured}
             <MediaRow header="Childhood Films" dataType="movie" dataArray={childhoodMovies} />
         </Layout>

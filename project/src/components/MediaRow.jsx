@@ -69,7 +69,7 @@ export default function MediaRow({dataType, header, dataArray}){
                 : dataType === "tv"
                 ? <TvShow key={item.id} {...item} onClick={handleClick} isMobile={true}/>
                 : (dataType === "movie" || dataType === "anime" || dataType === "documentary")
-                ? <AnimeMovie key={item.id} {...item} onClick={handleClick} />
+                ? <AnimeMovie key={item.id} {...item} onClick={handleClick} isMobile={true} />
                 : null;
     });
 
