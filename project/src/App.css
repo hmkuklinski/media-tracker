@@ -171,6 +171,7 @@ body{
   padding: 8px;
   /* for the scroll itself: */
   overflow-x: auto;
+  overflow-y: hidden;
   cursor:grab;
   /* prevents from selecting any text on grab*/
   user-select: none; 
