@@ -4,13 +4,18 @@
   font-family:Arial, Helvetica, sans-serif;
 }
 :root{
-  /* variables for the navbar*/
-  --navbar: whitesmoke;
+  /* variables for the mobile navbar*/
+  --navbar: rgb(49, 49, 49);
+  --navbar-mobile-text: rgb(137, 137, 137); /* for text when clicking menu*/
+  --nav-mobile-active: rgb(247, 75, 104);
+  
   --nav-active: rgb(216, 132, 160);
   --nav-hover:pink;
   --hamburger: rgb(196, 126, 218);
-  --active-page: rgb(196, 126, 218);
-  
+  --active-page: var(--landing-box);
+  --mobile-active-text: whitesmoke; /* for text on active page banner*/
+ 
+
   --background-color: #1c1d22;/* colors for the entire page*/
   --header-text:rgb(255, 255, 255);/* colors for the category titles*/
   --landing-text: whitesmoke;/* color for the TvLanding text*/
@@ -20,6 +25,9 @@
   --popup-color: #1c1d22;
   --popup-text: whitesmoke;
   --popup-x: red;
+
+  --filter-color: #333;
+  --filter-banner: rgba(245, 245, 245, 0.105);
 }
 
 body{
@@ -57,7 +65,7 @@ body{
   width: 100%;
   position: absolute;
   top: 270px;
-  left: 0px;
+  left: 0%;
   z-index: 100;
   padding: 6px;
   background-color: var(--navbar);
@@ -72,24 +80,25 @@ body{
 }
 .nav-options li{
   cursor:pointer;
-  padding: 10px;
-  gap: 4rem;
+  padding: 10px 0px;
+  gap: 0rem;
   text-align:center;
   width: 50%;
 }
 .nav-options li a{
-  color: #333;
+  color: var(--navbar-mobile-text);
   text-decoration:none;
   font-size: 20px;
 }
 .nav-options li:hover{
   transition: 0.4s ease-in;
+  background-color: var(--nav-hover);
 }
 .nav-options li a:hover{
   color: var(--nav-active);
 }
 .nav-options li .active{
-  color: var(--nav-hover);
+  color: var(--nav-mobile-active);
 }
 
 .nav-button{
@@ -119,9 +128,8 @@ body{
   position:relative;
   top: 0px;
   width: 100%;
-  color:whitesmoke;
+  color:var(--mobile-active-text);
   text-align: center;
-  padding: 8px 0;
   font-size: 24px;
   height: 50px;
   background-color: var(--active-page);
@@ -445,14 +453,17 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu, li.dropdown-submenu-menu:h
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 70%;
+  width: 90%;              
+  max-width: 600px;        
+  min-height: 200px; 
   height: auto;
   min-height: 400px;
   background-color: var(--popup-color);
   position:fixed;
   z-index: 1000;
-  left: 15%;
-  top: 7%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   padding: 8px;
 }
 /*format for content of the clicked box*/
@@ -469,13 +480,13 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu, li.dropdown-submenu-menu:h
 /* format for the div holding img inside the pop up*/
 .clicked-img{
   width: 90%;
-  height: 350px;
+  height: 320px;
   margin-top: 10px;
 }
 
 .clicked-img img{
   width:100%;
-  height: 340px;
+  height: 310px;
 }
 /* div that holds podcast title or tv show title */
 .clicked-title{
@@ -592,6 +603,73 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu, li.dropdown-submenu-menu:h
   font-size: 21px;
 }
 
+/*----------------------------RANKINGS Formatting----------------------------*/
+/* holds div box for "My Ratings" and the filter "button" */
+.ratings-display{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  height: 60px;
+  position:relative;
+}
+.rating-main-container h1{
+  color:whitesmoke;
+}
+/*set cursor to pointer for filter "button" and for filter options*/
+.ratings-filter, .rating-container{
+  cursor:pointer;
+}
+/* format for the filter "button" */
+.ratings-filter{
+  position:absolute;
+  right: 10%;
+  top: 10px;
+}
+/*format for filter ion icon display*/
+.ratings-filter ion-icon{
+  font-size: 30px;
+  color:whitesmoke;
+}
+
+/* div that holds the different rating selections*/
+.ratings{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  height: auto;
+  flex-wrap: wrap;
+  color:whitesmoke;
+
+}
+
+/* div that holds the individual selections*/
+.rating-container{
+  background-color: var(--filter-color);
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+  border: 1px solid var(--header-text);
+  flex: 1 1 100px;
+  margin:20px;
+  padding: 7px;
+  font-size: 20px;
+}
+/* used in default- separates the sections based on rating: */
+.curr-rating{
+  background-color:var(--filter-banner);
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 24px;
+  height: 70px;
+}
+.curr-rating h2{
+  font-size: 32px;
+}
 
 /*----------------------------MOBILE Formatting----------------------------*/
 @media (max-width: 768px){
@@ -600,8 +678,7 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu, li.dropdown-submenu-menu:h
   }
   .clicked-box{
     width:90%;
-    left: 4%;
-    top: 20%;
+    min-height: 250px;
   }
   .clicked-img{
     height: 250px;
@@ -679,13 +756,28 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu, li.dropdown-submenu-menu:h
   }
   .tv-landing-container{
     height: 400px;
+    margin: 40px 0px;
   }
-  #international, #docs, #jdramas, #anime{
-    margin-top: 100px;
+
+  .tv-content-main{
+    left: 0px;
+    width: 100%;
   }
-  
+  .clicked-box{
+    width: 95%;
+
+  }
+  .curr-rating{
+    margin:30px 0px;
+    background-color: transparent;
+    color:whitesmoke;
+  }
 }
-@media (max-width: 768px){
+@media (max-width: 400px){
+  .media-row-container{
+    left: 0;
+    width: 98%;
+  }
   .tv-content{
     display:flex;
     align-items: center;
@@ -702,4 +794,13 @@ li.dropdown-submenu:hover > ul.dropdown-submenu-menu, li.dropdown-submenu-menu:h
   .tv-genres h4, .tv-site h4{
     font-size: 13px;
   }
+  .tv-content-main{
+    left: 0px;
+    width: 100%;
+  }
+  .tv-landing-container{
+    height: 550px;
+    margin: 40px 0px;
+  }
+ 
 }

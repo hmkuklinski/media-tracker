@@ -37,9 +37,9 @@ export default function Throwback(){
     }, []);
 
     const kidFeatured = isMobile? (
-        // featured: spy x family
+        // featured: 
         <div>
-            <TvLanding {...childhoodFaves[2]} id="main-tv"/>
+            <TvLanding {...childhoodFaves[1]} id="main-tv"/>
         </div>
     ):(
         <div>

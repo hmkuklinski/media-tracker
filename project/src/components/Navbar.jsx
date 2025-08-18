@@ -30,7 +30,8 @@ export default function NavBar() {
     {id:"podcast", text:"Podcasts", link:"/podcast"},
     {id:"tv", text:"TV Shows", link:"/tv"},
     {id:"movies", text:"Movies", link:"/movies"},
-    {id:"childhood", text:"Childhood Faves", link:"/childhood"}
+    {id:"childhood", text:"Kids", link:"/childhood"},
+    {id:"ratings", text:"Ratings", link:"/ratings"}
   ];
 
   let pageTitle="Hannah's Media";
@@ -39,6 +40,7 @@ export default function NavBar() {
   else if (path.startsWith("/tv")) pageTitle = "TV Shows";
   else if (path.startsWith("/movies")) pageTitle = "Movies";
   else if (path.startsWith("/childhood")) pageTitle = "Childhood Faves";
+  else if (path.startsWith("/ratings")) pageTitle = "My Ratings";
 
   
 
@@ -111,7 +113,7 @@ export default function NavBar() {
         <span><NavLink to="/movies" className={({ isActive }) => isActive ? "active" : ""}>Movies</NavLink></span>
         <ul className="dropdown-menu">
           <li><NavLink to="/movies/queue" className={({ isActive }) => isActive ? "active" : ""}>Watchlist</NavLink></li>
-          <li><NavLink to="/movies/complete" className={({ isActive }) => isActive ? "active" : ""}>Completed</NavLink></li>
+          <li><NavLink to="/movies/complete" className={({ isActive }) => isActive ? "active" : ""}>Watched</NavLink></li>
           <li className="dropdown-submenu">
             <span><NavLink to="/movies" className={({ isActive }) => isActive ? "active" : ""}>Movie Categories  <ion-icon name="chevron-forward-outline"></ion-icon></NavLink></span>
             <ul className="dropdown-submenu-menu">
@@ -126,7 +128,8 @@ export default function NavBar() {
           </li>
         </ul>
       </li>
-      <li><NavLink to="/childhood" className={({ isActive }) => isActive ? "active" : ""}>Just a Girl</NavLink></li>
+      <li><NavLink to="/childhood" className={({ isActive }) => isActive ? "active" : ""}>Kids</NavLink></li>
+      <li><NavLink to="/ratings" className={({ isActive }) => isActive ? "active" : ""}>Tierlist</NavLink></li>
     </ul>
   );
    const navMobile = (

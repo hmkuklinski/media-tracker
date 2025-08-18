@@ -11,6 +11,7 @@ import Japanese from './components/TV/Japanese';
 import Movies from './components/AM/Movies';
 import Animes from './components/AM/Animes';
 import Throwback from './components/Throwbacks/Throwback';
+import Ratings from './components/Ratings/Ratings';
 
 
 function App() {
@@ -69,6 +70,7 @@ function App() {
         <Route path="/movies/thriller" element={<Category list={myMovies} filterProp="genres" filterText="Thriller" key="Thriller"isMain={true} dataType="movie"/>} />
       
         <Route path="/childhood" element={<Throwback /> } />
+        <Route path="/ratings" element={<Ratings /> } />
       </Routes>
     </div>
   );

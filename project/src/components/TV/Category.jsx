@@ -15,10 +15,11 @@ export default function Category({list, filterProp, filterText, dataType=null, i
     const huluContent = filtered.filter(show=> show.watchOn.includes("Hulu"));
     const paramountContent = filtered.filter(show=> show.watchOn.includes("Paramount+"));
     const disneyContent = filtered.filter(show=> show.watchOn.includes("Disney+"));
-    const primeContent =filtered.filter(show=> show.watchOn.includes("Amazon Prime Video"));
+    const primeContent =filtered.filter(show=> show.watchOn.includes("Amazon Prime Video") || show.watchOn.includes("Prime Video"));
     const vikiContent = filtered.filter(show=> show.watchOn.includes("Viki"));
     const iqiyiContent = filtered.filter(show=> show.watchOn.includes("iQIYI"));
     const weTVContent= filtered.filter(show=> show.watchOn.includes("WeTV"));
+    const dvdContent= filtered.filter(show=> show.watchOn.includes("DVD"));
 
    useEffect(() => {
     // preload both images for smooth swap
@@ -71,6 +72,7 @@ export default function Category({list, filterProp, filterText, dataType=null, i
             {vikiContent.length >0 &&  <MediaRow header="Now Streaming on Viki" dataType={dataValue} dataArray={vikiContent} /> }
             {iqiyiContent.length >0 &&  <MediaRow header="Now Streaming on iQIYI" dataType={dataValue} dataArray={iqiyiContent} /> }
             {weTVContent.length >0 &&  <MediaRow header="Now Streaming on WeTV" dataType={dataValue} dataArray={weTVContent} /> }
+            {dvdContent.length >0 &&  <MediaRow header="Now on DVD" dataType={dataValue} dataArray={dvdContent} /> }
         
         
         </div>);
